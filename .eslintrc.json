@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "@weahead/eslint-config-react"
+  ],
+  "rules": {
+    "indent": [
+      2,
+      2
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "react/jsx-indent": [
+      "error",
+      2
+    ]
+  }
+}
