@@ -13,7 +13,7 @@ export const wrapRootElement = ({ element }) => (
           scroll-behavior: smooth;
           min-width: 320px;
         }
-        *: {
+        * {
           box-sizing: border-box;
         }
         body {
