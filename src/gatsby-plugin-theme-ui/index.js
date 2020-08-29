@@ -30,4 +30,5 @@ export default {
     30, // 6
     50, // 7
   ],
-}
+  breakpoints: [ '400px' ]
+};
