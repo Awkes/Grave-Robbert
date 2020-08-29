@@ -8,11 +8,11 @@ import isUrl from '../utils/isUrl';
 
 const linkStyle = {
   fontFamily: 'button',
-  fontSize: 4,
   color: 'text',
   textDecoration: 'none',
   display: 'block',
-  padding: 2,
+  paddingY: 2,
+  paddingX: 3,
   '@media(pointer: fine)': {
     '&:hover': {
       animation: 'linkAnimation .2s infinite',
@@ -48,12 +48,15 @@ const linkStyle = {
   }
 };
 
-const Menu = ({ links, horizontal }) => (
+const Menu = ({ links, horizontal, small }) => (
   <ul sx={{ listStyleType: 'none', margin: 0, padding: 0, textAlign: 'center' }}>
     {links.map(({ title, link, id }) => (
       <li 
         key={id}
-        sx={{ display: horizontal ? 'inline-block' : 'block' }}
+        sx={{ 
+          display: horizontal ? 'inline-block' : 'block',
+          fontSize: small ? 4 : 5,
+        }}
       >
         {isUrl(link) 
           ? (
@@ -100,8 +103,10 @@ Menu.propTypes = {
     })
   ).isRequired,
   horizontal: PropTypes.bool,
+  small: PropTypes.bool,
 };
 
 Menu.defaultProps = {
   horizontal: false,
+  small: false,
 };
