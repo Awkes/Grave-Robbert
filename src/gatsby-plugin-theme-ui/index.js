@@ -29,6 +29,22 @@ export default {
     25, // 5
     30, // 6
     50, // 7
+    100, // 8
   ],
-  breakpoints: [ '400px' ]
+  breakpoints: [ '400px' ],
+  shadows: [
+    '0 0 5px #000',
+    '0 4px 1px rgba(96,63,112,0.7)'
+  ],
+  borders: [
+    '1px solid #fff'
+  ],
+  styles: {
+    hr: {
+      border: 'none',
+      borderBottom: '1px solid',
+      borderColor: 'primary',
+      margin: 1,
+    }
+  }
 };
