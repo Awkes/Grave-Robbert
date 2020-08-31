@@ -48,8 +48,8 @@ const linkStyle = {
   }
 };
 
-const Menu = ({ links, horizontal, small, onClick }) => (
-  <ul sx={{ listStyleType: 'none', margin: 0, padding: 0, textAlign: 'center' }}>
+const Menu = ({ links, horizontal, right, small, onClick }) => (
+  <ul sx={{ listStyleType: 'none', margin: 0, padding: 0, textAlign: right ? 'right' : 'center' }}>
     {links.map(({ title, link, id }) => (
       <li 
         key={id}
@@ -106,11 +106,13 @@ Menu.propTypes = {
   ).isRequired,
   horizontal: PropTypes.bool,
   onClick: PropTypes.func,
+  right: PropTypes.bool,
   small: PropTypes.bool,
 };
 
 Menu.defaultProps = {
   horizontal: false,
   onClick: null,
+  right: false,
   small: false,
 };
