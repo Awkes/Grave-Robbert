@@ -9,6 +9,8 @@ module.exports = {
       options: {
         apiToken: process.env.API_TOKEN
       }
-    }
+    },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
   ],
 }
