@@ -80,7 +80,7 @@ const Menu = ({ links, horizontal, right, small, onClick }) => (
                     }
                     : linkStyle
                   } 
-                  to={link?.slug}
+                  to={`/${link?.slug}`}
                 >
                   {title}
                 </Link>
