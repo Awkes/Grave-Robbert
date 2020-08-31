@@ -2,6 +2,7 @@
 import { jsx, useThemeUI } from 'theme-ui';
 import { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
+import BackgroundImage from 'gatsby-background-image';
 
 import Burger from './Burger';
 import Logo from './Logo';
@@ -58,32 +59,42 @@ const Header = ({ background, logo, menu, socialMedia }) => {
           top: 0,
           left: 0,
           flexGrow: 1,
-          display: 'flex',
-          flexDirection: ['column', , 'row'],
-          flexWrap: 'wrap',
-          justifyContent: ['space-between', , 'flex-end'],
-          alignItems: ['center', , 'center'],
-          paddingTop: [8, , 0],
-          paddingBottom: [7, , 0],
-          borderTop: ['5px solid', , 'none'],
-          borderBottom: ['5px solid', , 'none'],
-          borderColor: 'primary',
-          overflow: ['auto', , 'visible'],
           zIndex: -1,
           transform: [menuOpen ? 'translateY(0)' : 'translateY(100%)', , 'translateY(0)'],
           opacity: [menuOpen ? 1 : 0, , 1],
           transition: 'ease-in-out .2s',
-          backgroundImage: [t => `
-            linear-gradient(0deg, ${t.colors.background}, ${t.colors.background}),
-            url(${background})
-          `, , 'none'],
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover',
-          backgroundPosition: 'top center',
         }}
       >
-        <Menu links={menu} horizontal={!smallScreen} onClick={closeMenu} right={!smallScreen} />
-        <SocialMedia links={socialMedia} />
+        <BackgroundImage 
+          fluid={background}
+          sx={{
+            width: '100%',
+            height: '100%',
+            '&::before': { backgroundImage: ['initial', , 'none !important'] },
+            '&::after': { backgroundImage: ['initial', , 'none !important'] },
+          }}
+        >
+          <div sx={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: ['column', , 'row'],
+            flexWrap: 'wrap',
+            justifyContent: ['space-between', , 'flex-end'],
+            alignItems: ['center', , 'center'],
+            borderTop: ['5px solid', , 'none'],
+            borderBottom: ['5px solid', , 'none'],
+            borderColor: 'primary',
+            overflow: ['auto', , 'visible'],
+            paddingTop: [8, , 0],
+            paddingBottom: [7, , 0],
+            backgroundImage: [t => `
+              linear-gradient(0deg, ${t.colors.background}, ${t.colors.background})
+            `, , 'none'],
+          }}>
+            <Menu links={menu} horizontal={!smallScreen} onClick={closeMenu} right={!smallScreen} />
+            <SocialMedia links={socialMedia} />
+          </div>
+        </BackgroundImage>
       </nav>
       { 
         smallScreen &&
