@@ -26,7 +26,7 @@ const Partners = ({ links }) => (
               rel="noreferrer noopener" 
               target="_blank"
               >
-              <img src={image} alt={name} sx={{ height: '40px', maxWidth: '100%' }} />
+              <img src={image?.url} alt={name} sx={{ height: '40px', maxWidth: '100%' }} />
             </a>
           </li>
       ))}
@@ -42,6 +42,9 @@ Partners.propTypes = {
       name: PropTypes.string,
       link: PropTypes.string,
       id: PropTypes.string,
+      image: PropTypes.shape({
+        url: PropTypes.string,
+      })
     })
   ).isRequired,
 };

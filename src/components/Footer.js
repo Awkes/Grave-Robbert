@@ -74,7 +74,9 @@ Footer.propTypes = {
       name: PropTypes.string,
       link: PropTypes.string,
       id: PropTypes.string,
-      image: PropTypes.string,
+      image: PropTypes.shape({
+        url: PropTypes.string,
+      })
     })
   ).isRequired,
   socialMedia: PropTypes.arrayOf(
