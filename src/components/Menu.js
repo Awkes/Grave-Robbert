@@ -48,7 +48,7 @@ const linkStyle = {
   }
 };
 
-const Menu = ({ links, horizontal, small }) => (
+const Menu = ({ links, horizontal, small, onClick }) => (
   <ul sx={{ listStyleType: 'none', margin: 0, padding: 0, textAlign: 'center' }}>
     {links.map(({ title, link, id }) => (
       <li 
@@ -62,6 +62,7 @@ const Menu = ({ links, horizontal, small }) => (
           ? (
             <a 
               href={link} 
+              onClick={onClick}
               rel="noreferrer noopener" 
               sx={linkStyle} 
               target="_blank"
@@ -72,6 +73,7 @@ const Menu = ({ links, horizontal, small }) => (
             <Match path={`${link}/*`}>
               {({ match }) => (
                 <Link 
+                  onClick={onClick}
                   sx={match 
                     ? { 
                       ...linkStyle,
@@ -103,10 +105,12 @@ Menu.propTypes = {
     })
   ).isRequired,
   horizontal: PropTypes.bool,
+  onClick: PropTypes.func,
   small: PropTypes.bool,
 };
 
 Menu.defaultProps = {
   horizontal: false,
+  onClick: null,
   small: false,
 };
