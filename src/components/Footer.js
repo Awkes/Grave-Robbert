@@ -67,7 +67,7 @@ Footer.propTypes = {
   ).isRequired,
   partners: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string,
+      name: PropTypes.string,
       link: PropTypes.string,
       id: PropTypes.string,
       image: PropTypes.string,
