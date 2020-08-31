@@ -61,8 +61,12 @@ Footer.propTypes = {
   menu: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      link: PropTypes.string,
+      link: PropTypes.shape({
+        slug: PropTypes.string
+      }),
+      url: PropTypes.string,
       id: PropTypes.string,
+      __typename: PropTypes.string,
     })
   ).isRequired,
   partners: PropTypes.arrayOf(

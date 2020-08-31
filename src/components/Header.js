@@ -9,7 +9,6 @@ import Menu from './Menu';
 import SocialMedia from './SocialMedia';
 
 const Header = ({ background, logo, menu, socialMedia }) => {
-  const { alt, src } = logo;
   const { theme } = useThemeUI();
  
   const [menuOpen, setMenuOpen] = useState(false);
@@ -50,7 +49,7 @@ const Header = ({ background, logo, menu, socialMedia }) => {
           zIndex: 100,
         }}
     >
-      <Logo alt={alt} src={src} onClick={closeMenu} />
+      <Logo alt={logo?.alt || ''} src={logo?.url} onClick={closeMenu} />
       <nav 
         sx={{ 
           position: ['fixed', ,'static'],
@@ -97,16 +96,20 @@ const Header = ({ background, logo, menu, socialMedia }) => {
 export default Header;
 
 Header.propTypes = {
-  background: PropTypes.string.isRequired,
+  background: PropTypes.object.isRequired,
   logo: PropTypes.shape({
     alt: PropTypes.string,
-    src: PropTypes.string,
+    url: PropTypes.string,
   }).isRequired,
   menu: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      link: PropTypes.string,
+      link: PropTypes.shape({
+        slug: PropTypes.string
+      }),
+      url: PropTypes.string,
       id: PropTypes.string,
+      __typename: PropTypes.string,
     })
   ).isRequired,
   socialMedia: PropTypes.arrayOf(
