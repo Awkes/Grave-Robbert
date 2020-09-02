@@ -16,6 +16,7 @@ const Hero = ({ video, scrollToRef }) => {
       background: '#000',
       position: 'relative',
       height: 'calc(100vh + 1px)',
+      width: '100%',
       overflow: 'hidden',
       borderBottom: 0,
       textAlign: 'center',
@@ -40,8 +41,10 @@ const Hero = ({ video, scrollToRef }) => {
         onClick={scrollDown}
         sx={{ 
           position: 'absolute',
-          bottom: 7,
+          bottom: 6,
           fontSize: 3,
+          padding: 3,
+          transform: 'translateX(-50%)',
           textAlign: 'center', 
           color: 'text', 
           backgroundColor: 'transparent',
