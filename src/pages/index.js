@@ -1,10 +1,11 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
 import { graphql } from 'gatsby';
+import PropTypes from 'prop-types';
 import { useRef } from 'react';
+import { jsx } from 'theme-ui';
 
-import Layout from '../components/Layout';
 import Hero from '../components/Hero';
+import Layout from '../components/Layout';
 
 const Home = ({ data }) => {
   const { 
@@ -15,13 +16,21 @@ const Home = ({ data }) => {
 
   return (
     <Layout>
-      <Hero video={video} scrollToRef={news} />
-      <div sx={{ height: '700px' }} ref={news} /> {/* Temporary Fake News Block */}
+      <Hero scrollToRef={news} video={video} />
+      <div ref={news} sx={{ height: '700px' }} /> {/* Temporary Fake News Block */}
     </Layout>
   );
-}
+};
 
 export default Home;
+
+Home.propTypes = {
+  data: PropTypes.shape({
+    datoCmsStart: PropTypes.shape({
+      video: PropTypes.string,
+    })
+  }).isRequired
+};
 
 export const query = graphql`
   query {
