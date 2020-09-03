@@ -62,7 +62,5 @@ export default Hero;
 
 Hero.propTypes = {
   video: PropTypes.string.isRequired,
-  scrollToRef: PropTypes.shape({
-    current: PropTypes.instanceOf(Element),
-  }).isRequired,
+  scrollToRef: PropTypes.object.isRequired,
 }
