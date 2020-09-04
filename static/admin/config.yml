@@ -7,36 +7,52 @@ public_folder: /media
 
 collections:
   - name: site
-    label: Site
+    label: "Site"
     files:
       - name: settings
-        label: Settings
+        label: "Settings"
         file: data/settings.yml
         fields:
           - {label: Logo, name: logo, widget: image}
           - {label: Background, name: background, widget: image}
-          - {label: 'Footer Text', name: footer, widget: string}
-    
-  - name: menu
-    label: Menu
-    files:
-      - file: data/navigation.yml
-        name: navigation
-        label: Navigation
+          - {label: "Footer Text", name: footer, widget: string}
+      - file: data/menu.yml
+        name: menu
+        label: Menu
         fields:
           - name: menuLinks
-            label: Navigation
+            label: "Menu Links"
             widget: list
             fields:
               - {label: Title, name: title, widget: string}
               - {label: Link, name: link, widget: string}
-      - file: data/socialMedia.yml
+      - file: data/social.yml
         name: socialMedia
         label: "Social Media"
         fields:
-          - name: socialMedia
-            label: "Social Media"     
+          - name: socialMediaLinks
+            label: "Social Media Links"     
             widget: list
             fields:
               - {label: Title, name: title, widget: select, options: [Facebook, LinkedIn, Instagram, iTunes, 'Apple Music', Snapchat, Soundcloud, Spotify]}
               - {label: Link, name: link, widget: string}
+      - file: data/partners.yml
+        name: partners
+        label: Partners
+        fields:
+          - name: partnerLinks
+            label: "Partner Links"
+            widget: list
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: Link, name: link, widget: string}
+              - {label: Image, name: image, widget: image}
+  - name: start
+    label: "Start"
+    files:
+      - file: data/pages/start.yml
+        name: hero
+        label: Hero
+        fields:
+          - { name: video, label: Video, widget: file }
+
