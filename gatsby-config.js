@@ -4,12 +4,7 @@ module.exports = {
   plugins: [
     'gatsby-plugin-theme-ui',
     'gatsby-plugin-fontawesome-css',
-    {
-      resolve: 'gatsby-source-datocms',
-      options: {
-        apiToken: process.env.API_TOKEN
-      }
-    },
+    'gatsby-plugin-netlify-cms',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
   ],

@@ -1,0 +1,41 @@
+backend:
+  name: git-gateway
+  branch: cms-test
+
+media_folder: static/media
+public_folder: /media
+
+collections:
+  - name: site
+    label: Site
+    files:
+      - name: settings
+        label: Settings
+        file: "data/settings.yml"
+        fields:
+          - {label: Logo, name: logo, widget: image}
+          - {label: Background, name: background, widget: image}
+          - {label: 'Footer Text', name: footer, widget: string}
+    
+  - name: menu
+    label: Menu
+    files:
+      - file: data/navigation.yml
+        name: navigation
+        label: Navigation
+        fields:
+          - name: links
+            label: Links
+            widget: list
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: Link, name: link, widget: string}
+      - file: data/socialMedia.yml
+        name: socialMedia
+        label: 'Social Media'
+        fields:
+          - name: links
+            label: Links          
+            fields:
+              - {label: Title, name: title, widget: select, options: [Facebook, LinkedIn, Instagram, iTunes, 'Apple Music', Snapchat, Soundcloud, Spotify]}
+              - {label: Link, name: link, widget: string}

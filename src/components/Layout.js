@@ -8,83 +8,83 @@ import Header from './Header';
 import Footer from './Footer';
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      datoCmsWebsite {
-        background { fluid { ...GatsbyDatoCmsFluid } }
-        logo { alt, url }
-        menuItems {
-          ... on DatoCmsInternalLink {
-            id
-            title
-            link {
-              ... on DatoCmsNews { slug }
-              ... on DatoCmsBand { slug }
-              ... on DatoCmsMusic { slug }
-              ... on DatoCmsLive { slug }
-              ... on DatoCmsContact { slug }
-            }
-          }
-          ... on DatoCmsExternalLink {
-            id
-            title
-            url
-          }
-        }
-        partners {
-          id
-          name
-          link
-          image { url }
-        }
-        socialMedia {
-          id
-          title
-          link
-        }
-        text
-      }
-    }
-  `);
+  // const data = useStaticQuery(graphql`
+  //   query {
+  //     datoCmsWebsite {
+  //       background { fluid { ...GatsbyDatoCmsFluid } }
+  //       logo { alt, url }
+  //       menuItems {
+  //         ... on DatoCmsInternalLink {
+  //           id
+  //           title
+  //           link {
+  //             ... on DatoCmsNews { slug }
+  //             ... on DatoCmsBand { slug }
+  //             ... on DatoCmsMusic { slug }
+  //             ... on DatoCmsLive { slug }
+  //             ... on DatoCmsContact { slug }
+  //           }
+  //         }
+  //         ... on DatoCmsExternalLink {
+  //           id
+  //           title
+  //           url
+  //         }
+  //       }
+  //       partners {
+  //         id
+  //         name
+  //         link
+  //         image { url }
+  //       }
+  //       socialMedia {
+  //         id
+  //         title
+  //         link
+  //       }
+  //       text
+  //     }
+  //   }
+  // `);
 
-  const { 
-    datoCmsWebsite: { 
-      background: { fluid: background },
-      logo,
-      menuItems,
-      partners,
-      socialMedia,
-      text
-    }
-  } = data;
+  // const { 
+  //   datoCmsWebsite: { 
+  //     background: { fluid: background },
+  //     logo,
+  //     menuItems,
+  //     partners,
+  //     socialMedia,
+  //     text
+  //   }
+  // } = data;
+  return (<div />);
+  // return (
+  //   <BackgroundImage 
+  //     fluid={background}
+  //     sx= {{
+  //       backgroundAttachment: 'fixed',
+  //       backgroundSize: 'cover',
+  //       backgroundPosition: 'top center',
+  //     }}
+  //   >
+  //     <div 
+  //       sx={{
+  //         minHeight: '100vh',
+  //         display: 'flex',
+  //         flexDirection: 'column',
+  //         backgroundImage: t => `linear-gradient(0deg, ${t.colors.background}, ${t.colors.background})`,
+  //       }}
+  //     >
+  //       <Header logo={logo} menu={menuItems} socialMedia={socialMedia} background={background} />
 
-  return (
-    <BackgroundImage 
-      fluid={background}
-      sx= {{
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'top center',
-      }}
-    >
-      <div 
-        sx={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          backgroundImage: t => `linear-gradient(0deg, ${t.colors.background}, ${t.colors.background})`,
-        }}
-      >
-        <Header logo={logo} menu={menuItems} socialMedia={socialMedia} background={background} />
+  //       <main sx={{ flexGrow: 1 }}>
+  //         {children}
+  //       </main>
 
-        <main sx={{ flexGrow: 1 }}>
-          {children}
-        </main>
-
-        <Footer menu={menuItems} partners={partners} socialMedia={socialMedia} text={text} />
-      </div>
-    </BackgroundImage>
-  );
+  //       <Footer menu={menuItems} partners={partners} socialMedia={socialMedia} text={text} />
+  //     </div>
+  //   </BackgroundImage>
+  // );
 };
 
 export default Layout;
