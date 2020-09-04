@@ -34,7 +34,7 @@ collections:
             label: "Social Media Links"     
             widget: list
             fields:
-              - {label: Title, name: title, widget: select, options: [Facebook, LinkedIn, Instagram, iTunes, 'Apple Music', Snapchat, Soundcloud, Spotify]}
+              - {label: Title, name: title, widget: select, options: [Facebook, LinkedIn, Instagram, iTunes, 'Apple Music', Snapchat, Soundcloud, Spotify, Twitter, YouTube]}
               - {label: Link, name: link, widget: string}
       - file: data/partners.yml
         name: partners
