@@ -33,10 +33,10 @@ collections:
       - file: data/socialMedia.yml
         name: socialMedia
         label: "Social Media"
-        widget: list
         fields:
           - name: socialMedia
             label: "Social Media"     
+            widget: list
             fields:
               - {label: Title, name: title, widget: select, options: [Facebook, LinkedIn, Instagram, iTunes, 'Apple Music', Snapchat, Soundcloud, Spotify]}
               - {label: Link, name: link, widget: string}
