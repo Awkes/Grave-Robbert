@@ -1,6 +1,5 @@
-links:
+menuLinks:
   - title: News
-    path: /news
     link: news
   - title: Band
     link: band
