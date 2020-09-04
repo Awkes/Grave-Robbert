@@ -1,11 +1,10 @@
-menuLinks:
-  - title: News
-    link: news
-  - title: Band
-    link: band
-  - title: Music
-    link: music
-  - title: Live
-    link: live
-  - title: Contact
-    link: https://graverobbert.netlify.app/contact
+- title: News
+  link: news
+- title: Band
+  link: band
+- title: Music
+  link: music
+- title: Live
+  link: live
+- title: Contact
+  link: https://graverobbert.netlify.app/contact

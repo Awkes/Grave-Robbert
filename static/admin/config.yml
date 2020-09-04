@@ -20,12 +20,8 @@ collections:
         name: menu
         label: Menu
         fields:
-          - name: menuLinks
-            label: "Menu Links"
-            widget: list
-            fields:
-              - {label: Title, name: title, widget: string}
-              - {label: Link, name: link, widget: string}
+          - {label: Title, name: title, widget: string}
+          - {label: Link, name: link, widget: string}
       - file: data/social.yml
         name: socialMedia
         label: "Social Media"
