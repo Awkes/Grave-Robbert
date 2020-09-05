@@ -2,37 +2,81 @@ backend:
   name: git-gateway
   branch: feature/netlify-cms
 
+local_backend: true
+
 media_folder: static/media
 public_folder: /media
 
 collections:
+  # Site
   - name: site
-    label: "Site"
+    label: "Site Layout"
+    editor:
+      preview: false
     files:
+
+      # Site Settings
       - name: settings
         label: "Settings"
-        file: data/settings.yml
+        file: data/settings/settings.yml
         fields:
-          - {label: Logo, name: logo, widget: image}
-          - {label: Background, name: background, widget: image}
-          - {label: "Footer Text", name: footer, widget: string}
-      - file: data/menu.yml
+          - { label: Logo, name: logo, widget: image }
+          - { label: Background, name: background, widget: image }
+          - { label: "Footer Text", name: footer, widget: string }
+      
+      # Menu
+      - file: data/menu/menu.yml
         name: menu
         label: Menu
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Link, name: link, widget: string}
-      - file: data/social.yml
+          - name: menuLinks
+            label: "Menu"
+            widget: list
+            types:
+              - label: "Local Link"
+                name: local
+                widget: object
+                summary: "{{fields.title}} (Local Link)"
+                fields:
+                - { label: Title, name: title, widget: string }
+                - label: Page
+                  name: link
+                  widget: select
+                  options:
+                    - { label: "Landing Page", value: "" }
+                    - { label: "News", value: "news" }
+                    - { label: "Band", value: "band" }
+                    - { label: "Music", value: "music" }
+                    - { label: "Live", value: "live" }
+                    - { label: "Contact", value: "contact" }
+                - {label: ID, name: id, widget: ncw-id, prefix: menu, hidden: true}
+              - label: "External Link"
+                name: external
+                widget: object
+                summary: "{{fields.title}} (External Link)"
+                fields:
+                - { label: Title, name: title, widget: string }
+                - { label: URL, name: link, widget: string }
+                - { label: ID, name: id, widget: ncw-id, prefix: menu, hidden: true }
+
+      # Social Media
+      - file: data/social/social.yml
         name: socialMedia
         label: "Social Media"
         fields:
           - name: socialMediaLinks
-            label: "Social Media Links"     
+            label: "Social Media"   
             widget: list
             fields:
-              - {label: Title, name: title, widget: select, options: [Facebook, LinkedIn, Instagram, iTunes, 'Apple Music', Snapchat, Soundcloud, Spotify, Twitter, YouTube]}
+              - label: Title
+                name: title
+                widget: select
+                options: [Facebook, LinkedIn, Instagram, iTunes, 'Apple Music', Snapchat, Soundcloud, Spotify, Twitter, YouTube]
               - {label: Link, name: link, widget: string}
-      - file: data/partners.yml
+              - {label: ID, name: id, widget: ncw-id, prefix: social, hidden: true}
+
+      # Partners
+      - file: data/partners/partners.yml
         name: partners
         label: Partners
         fields:
@@ -43,12 +87,53 @@ collections:
               - {label: Title, name: title, widget: string}
               - {label: Link, name: link, widget: string}
               - {label: Image, name: image, widget: image}
-  - name: start
-    label: "Start"
+              - {label: ID, name: id, widget: ncw-id, prefix: partner}
+
+  # Pages
+  - name: pages
+    label: "Predefined Pages"
+    editor:
+      preview: false  
     files:
+
+      # Landing Page
       - file: data/pages/start.yml
-        name: hero
-        label: Hero
+        name: start
+        label: "Landing Page"
+        fields: { name: video, label: Video, widget: file }
+      
+      # News Page
+      - file: data/pages/news.yml
+        name: news
+        label: "News"
         fields:
-          - { name: video, label: Video, widget: file }
+          - { name: title, label: Title, widget: string }
+      
+      # Band Page
+      - file: data/pages/band.yml
+        name: band
+        label: "Band"
+        fields:
+          - { name: title, label: Title, widget: string }
+      
+      # Music Page
+      - file: data/pages/music.yml
+        name: music
+        label: "Music"
+        fields:
+          - { name: title, label: Title, widget: string }
+      
+      # Live Page
+      - file: data/pages/live.yml
+        name: live
+        label: "Live"
+        fields:
+          - { name: title, label: Title, widget: string }
+
+      # Contact Page
+      - file: data/pages/contact.yml
+        name: contact
+        label: "Contact"
+        fields:
+          - { name: title, label: Title, widget: string }
 
