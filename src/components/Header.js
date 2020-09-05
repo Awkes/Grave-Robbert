@@ -2,7 +2,6 @@
 import { jsx, useThemeUI } from 'theme-ui';
 import { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
-import BackgroundImage from 'gatsby-background-image';
 
 import Burger from './Burger';
 import Logo from './Logo';
@@ -38,19 +37,19 @@ const Header = ({ background, logo, menu, socialMedia }) => {
 
   return (
     <header 
-        sx={{ 
-          padding: 2, 
-          position: ['fixed', , 'static'], 
-          display: 'flex', 
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          width: '100%',
-          minWidth: '320px',
-          zIndex: 100,
-        }}
+      sx={{ 
+        padding: 2, 
+        position: ['fixed', , 'static'], 
+        display: 'flex', 
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        minWidth: '320px',
+        zIndex: 100,
+      }}
     >
-      <Logo alt={logo?.alt || ''} src={logo?.url} onClick={closeMenu} />
+      <Logo alt={"Logo"} src={logo} onClick={closeMenu} />
       <nav 
         sx={{ 
           position: ['fixed', ,'static'],
@@ -62,23 +61,14 @@ const Header = ({ background, logo, menu, socialMedia }) => {
           zIndex: -1,
           transform: [menuOpen ? 'translateY(0)' : 'translateY(100%)', , 'translateY(0)'],
           opacity: [menuOpen ? 1 : 0, , 1],
-          transition: 'ease-in-out .2s',
+          transition: 'transform ease-in-out .2s',
         }}
       >
-        <BackgroundImage 
-          fluid={background}
-          sx={{
-            width: '100%',
-            height: '100%',
-            '&::before': { backgroundImage: ['initial', , 'none !important'] },
-            '&::after': { backgroundImage: ['initial', , 'none !important'] },
-          }}
-        >
           <div sx={{
             height: '100%',
             display: 'flex',
             flexDirection: ['column', , 'row'],
-            flexWrap: 'wrap',
+            flexWrap: ['nowrap', ,'wrap'],
             justifyContent: ['space-between', , 'flex-end'],
             alignItems: ['center', , 'center'],
             borderTop: ['5px solid', , 'none'],
@@ -87,19 +77,19 @@ const Header = ({ background, logo, menu, socialMedia }) => {
             overflow: ['auto', , 'visible'],
             paddingTop: [8, , 0],
             paddingBottom: [7, , 0],
-            backgroundImage: [t => `
-              linear-gradient(0deg, ${t.colors.background}, ${t.colors.background})
-            `, , 'none'],
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            backgroundPosition: 'top center',
+            backgroundImage: [t => 
+              `linear-gradient(0deg, ${t.colors.background}, ${t.colors.background}), url(${background})`, , 'none'],
+            '&>*': { marginLeft: [0, , 5] },
+            '&>*:last-child': { marginTop: [5, , 0] },
           }}>
             <Menu links={menu} horizontal={!smallScreen} onClick={closeMenu} right={!smallScreen} />
             <SocialMedia links={socialMedia} />
           </div>
-        </BackgroundImage>
       </nav>
-      { 
-        smallScreen &&
-        <Burger toggled={menuOpen} onClick={toggleMenu} />
-      }
+      {smallScreen && <Burger toggled={menuOpen} onClick={toggleMenu} />}
     </header>
   );
 }
@@ -107,20 +97,13 @@ const Header = ({ background, logo, menu, socialMedia }) => {
 export default Header;
 
 Header.propTypes = {
-  background: PropTypes.object.isRequired,
-  logo: PropTypes.shape({
-    alt: PropTypes.string,
-    url: PropTypes.string,
-  }).isRequired,
+  background: PropTypes.string.isRequired,
+  logo: PropTypes.string.isRequired,
   menu: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      link: PropTypes.shape({
-        slug: PropTypes.string
-      }),
-      url: PropTypes.string,
+      link: PropTypes.string,
       id: PropTypes.string,
-      __typename: PropTypes.string,
     })
   ).isRequired,
   socialMedia: PropTypes.arrayOf(

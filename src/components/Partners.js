@@ -12,7 +12,7 @@ const Partners = ({ links }) => (
         textAlign: 'center',
       }}
     >
-      {links.map(({ name, link, id, image }) => (
+      {links.map(({ title, link, id, image }) => (
         <li 
           key={id}
           sx={{ 
@@ -21,14 +21,14 @@ const Partners = ({ links }) => (
             paddingY: 2,
           }}
         >
-            <a 
-              href={link} 
-              rel="noreferrer noopener" 
-              target="_blank"
-              >
-              <img src={image?.url} alt={name} sx={{ height: '40px', maxWidth: '100%' }} />
-            </a>
-          </li>
+          <a 
+            href={link} 
+            rel="noreferrer noopener" 
+            target="_blank"
+          >
+            <img alt={title} src={image} sx={{ height: '40px', maxWidth: '100%' }} />
+          </a>
+        </li>
       ))}
     </ul>
   </section>
@@ -42,9 +42,7 @@ Partners.propTypes = {
       name: PropTypes.string,
       link: PropTypes.string,
       id: PropTypes.string,
-      image: PropTypes.shape({
-        url: PropTypes.string,
-      })
+      image:PropTypes.string,
     })
   ).isRequired,
 };

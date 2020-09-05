@@ -1,89 +1,70 @@
 /** @jsx jsx */
+import { graphql,useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import { jsx } from 'theme-ui';
-import { useStaticQuery, graphql } from 'gatsby';
-import BackgroundImage from 'gatsby-background-image';
 
-import Header from './Header';
 import Footer from './Footer';
+import Header from './Header';
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query {
-      datoCmsWebsite {
-        background { fluid { ...GatsbyDatoCmsFluid } }
-        logo { alt, url }
-        menuItems {
-          ... on DatoCmsInternalLink {
-            id
-            title
-            link {
-              ... on DatoCmsNews { slug }
-              ... on DatoCmsBand { slug }
-              ... on DatoCmsMusic { slug }
-              ... on DatoCmsLive { slug }
-              ... on DatoCmsContact { slug }
-            }
-          }
-          ... on DatoCmsExternalLink {
-            id
-            title
-            url
-          }
-        }
-        partners {
-          id
-          name
+      settingsYaml {
+        logo
+        background
+        footer
+      }
+      menuYaml {
+        menuLinks {
           link
-          image { url }
-        }
-        socialMedia {
+          title
           id
+        }
+      }
+      socialYaml {
+        socialMediaLinks {
+          link
+          title
+          id
+        }
+      }
+      partnersYaml {
+        partnerLinks {
           title
           link
+          image
+          id
         }
-        text
       }
     }
   `);
 
   const { 
-    datoCmsWebsite: { 
-      background: { fluid: background },
-      logo,
-      menuItems,
-      partners,
-      socialMedia,
-      text
-    }
+    settingsYaml: { background, logo, footer },
+    menuYaml: { menuLinks },
+    socialYaml: { socialMediaLinks },
+    partnersYaml: { partnerLinks }
   } = data;
 
   return (
-    <BackgroundImage 
-      fluid={background}
-      sx= {{
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'top center',
-      }}
-    >
-      <div 
-        sx={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          backgroundImage: t => `linear-gradient(0deg, ${t.colors.background}, ${t.colors.background})`,
-        }}
-      >
-        <Header logo={logo} menu={menuItems} socialMedia={socialMedia} background={background} />
+    <div sx={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      backgroundImage: t => 
+        `linear-gradient(0deg, ${t.colors.background}, ${t.colors.background}), url(${background})`,
+      backgroundAttachment: 'fixed',
+      backgroundSize: 'cover',
+      backgroundPosition: 'top center',
+    }}>
+      <Header background={background} logo={logo} menu={menuLinks} socialMedia={socialMediaLinks} />
 
-        <main sx={{ flexGrow: 1 }}>
-          {children}
-        </main>
+      <main sx={{ flexGrow: 1 }}>
+        {children}
+      </main>
 
-        <Footer menu={menuItems} partners={partners} socialMedia={socialMedia} text={text} />
-      </div>
-    </BackgroundImage>
+      <Footer menu={menuLinks} partners={partnerLinks} socialMedia={socialMediaLinks} text={footer} />
+    </div>
   );
 };
 
