@@ -9,7 +9,7 @@ import Layout from '../components/Layout';
 
 const Home = ({ data }) => {
   const { 
-    datoCmsStart: { video }
+    allPagesYaml: { nodes: [ { video } ] }
   } = data;
 
   const news = useRef(null);
@@ -26,16 +26,22 @@ export default Home;
 
 Home.propTypes = {
   data: PropTypes.shape({
-    datoCmsStart: PropTypes.shape({
-      video: PropTypes.string,
+    allPagesYaml: PropTypes.shape({
+      nodes: PropTypes.arrayOf(
+        PropTypes.shape({
+          video: PropTypes.string,
+        })
+      ),
     })
   }).isRequired
 };
 
 export const query = graphql`
   query {
-    datoCmsStart {
-      video
+    allPagesYaml(filter: {slug: {eq: ""}}) {
+      nodes {
+        video
+      }
     }
   }
 `;
