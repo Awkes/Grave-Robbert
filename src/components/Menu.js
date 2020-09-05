@@ -4,6 +4,8 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { jsx } from 'theme-ui';
 
+import isUrl from '../utils/isUrl';
+
 const linkStyle = {
   fontFamily: 'button',
   color: 'text',
@@ -48,7 +50,7 @@ const linkStyle = {
 
 const Menu = ({ links, horizontal, right, small, onClick }) => (
   <ul sx={{ listStyleType: 'none', margin: 0, padding: 0, textAlign: right ? 'right' : 'center' }}>
-    {links.map(({ __typename, title, link, url, id }) => (
+    {links.map(({ id, title, link }) => (
       <li 
         key={id}
         sx={{ 
@@ -56,10 +58,10 @@ const Menu = ({ links, horizontal, right, small, onClick }) => (
           fontSize: small ? 4 : 5,
         }}
       >
-        {__typename === 'DatoCmsExternalLink'
+        {isUrl(link)
           ? (
             <a 
-              href={url} 
+              href={link} 
               onClick={onClick}
               rel="noreferrer noopener" 
               sx={linkStyle} 
@@ -68,7 +70,7 @@ const Menu = ({ links, horizontal, right, small, onClick }) => (
               {title}
             </a>
           ) : (
-            <Match path={`${link?.slug}/*`}>
+            <Match path={`${link}/*`}>
               {({ match }) => (
                 <Link 
                   onClick={onClick}
@@ -80,7 +82,7 @@ const Menu = ({ links, horizontal, right, small, onClick }) => (
                     }
                     : linkStyle
                   } 
-                  to={`/${link?.slug}`}
+                  to={`/${link}`}
                 >
                   {title}
                 </Link>
@@ -98,12 +100,8 @@ Menu.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      link: PropTypes.shape({
-        slug: PropTypes.string
-      }),
-      url: PropTypes.string,
+      link: PropTypes.string,
       id: PropTypes.string,
-      __typename: PropTypes.string,
     })
   ).isRequired,
   horizontal: PropTypes.bool,

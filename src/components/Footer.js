@@ -1,14 +1,16 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PropTypes } from 'prop-types';
+import { jsx, Styled } from 'theme-ui';
 
 import Menu from './Menu';
 import Partners from './Partners';
 import SocialMedia from './SocialMedia';
 
 const Footer = ({ menu, partners, socialMedia, text }) => {
+  const { hr: Hr } = Styled;
+
   function scrollToTop(e) {
     window?.scrollTo(0, 0);
     e.currentTarget.blur();
@@ -16,7 +18,7 @@ const Footer = ({ menu, partners, socialMedia, text }) => {
 
   return (
     <footer>
-      <Styled.hr />
+      <Hr />
       <button
         onClick={scrollToTop}
         sx={{ 
@@ -53,7 +55,7 @@ const Footer = ({ menu, partners, socialMedia, text }) => {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
 
@@ -61,12 +63,9 @@ Footer.propTypes = {
   menu: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      link: PropTypes.shape({
-        slug: PropTypes.string
-      }),
+      link: PropTypes.string,
       url: PropTypes.string,
-      id: PropTypes.string,
-      __typename: PropTypes.string,
+      id: PropTypes.string
     })
   ).isRequired,
   partners: PropTypes.arrayOf(
@@ -74,9 +73,7 @@ Footer.propTypes = {
       name: PropTypes.string,
       link: PropTypes.string,
       id: PropTypes.string,
-      image: PropTypes.shape({
-        url: PropTypes.string,
-      })
+      image: PropTypes.string,
     })
   ).isRequired,
   socialMedia: PropTypes.arrayOf(
@@ -87,4 +84,4 @@ Footer.propTypes = {
     })
   ).isRequired,
   text: PropTypes.string.isRequired,
-}
+};
