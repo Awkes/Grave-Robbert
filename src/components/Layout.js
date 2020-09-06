@@ -1,12 +1,14 @@
 /** @jsx jsx */
 import { graphql,useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
+import { useRef } from 'react';
 import { jsx } from 'theme-ui';
 
 import Footer from './Footer';
 import Header from './Header';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, videoHero }) => {
+  const main = useRef(null);
   const data = useStaticQuery(graphql`
     query {
       settingsYaml {
@@ -57,9 +59,9 @@ const Layout = ({ children }) => {
       backgroundSize: 'cover',
       backgroundPosition: 'top center',
     }}>
-      <Header background={background} logo={logo} menu={menuLinks} socialMedia={socialMediaLinks} />
+      <Header background={background} logo={logo} menu={menuLinks} scrollToRef={main} socialMedia={socialMediaLinks} videoHero={videoHero} />
 
-      <main sx={{ flexGrow: 1 }}>
+      <main ref={main} sx={{ flexGrow: 1 }}>
         {children}
       </main>
 
@@ -74,5 +76,10 @@ Layout.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
-  ]).isRequired
+  ]).isRequired,
+  videoHero: PropTypes.string,
+};
+
+Layout.defaultProps = {
+  videoHero: null,
 };

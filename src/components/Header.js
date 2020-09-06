@@ -7,8 +7,9 @@ import Burger from './Burger';
 import Logo from './Logo';
 import Menu from './Menu';
 import SocialMedia from './SocialMedia';
+import VideoHero from '../components/VideoHero';
 
-const Header = ({ background, logo, menu, socialMedia }) => {
+const Header = ({ background, logo, menu, socialMedia, videoHero, scrollToRef }) => {
   const { theme } = useThemeUI();
  
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,34 +37,34 @@ const Header = ({ background, logo, menu, socialMedia }) => {
   }, []);
 
   return (
-    <header 
-      sx={{ 
-        padding: 2, 
-        position: ['fixed', , 'static'], 
+    <header sx={{ minWidth: '320px', zIndex: 100, position: 'relative' }}>
+      {videoHero && <VideoHero video={videoHero} scrollToRef={scrollToRef} />}
+      <div sx={{
+        position: ['fixed', , videoHero ? 'absolute' : 'relative'], 
         display: 'flex', 
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '100%',
-        minWidth: '320px',
+        padding: 2,
         zIndex: 100,
-      }}
-    >
-      <Logo alt={"Logo"} src={logo} onClick={closeMenu} />
-      <nav 
-        sx={{ 
-          position: ['fixed', ,'static'],
-          width: ['100%', , 'unset'],
-          height: '100%',
-          top: 0,
-          left: 0,
-          flexGrow: 1,
-          zIndex: -1,
-          transform: [menuOpen ? 'translateY(0)' : 'translateY(100%)', , 'translateY(0)'],
-          opacity: [menuOpen ? 1 : 0, , 1],
-          transition: 'transform ease-in-out .2s',
-        }}
-      >
+        width: '100%',
+        top: 0
+      }}>
+        <Logo alt={"Logo"} src={logo} onClick={closeMenu} />
+        <nav 
+          sx={{ 
+            position: ['fixed', ,'static'],
+            width: ['100%', , 'unset'],
+            height: '100%',
+            top: 0,
+            left: 0,
+            flexGrow: 1,
+            zIndex: -1,
+            transform: [menuOpen ? 'translateY(0)' : 'translateY(100%)', , 'translateY(0)'],
+            opacity: [menuOpen ? 1 : 0, , 1],
+            transition: 'transform ease-in-out .2s',
+          }}
+        >
           <div sx={{
             height: '100%',
             display: 'flex',
@@ -82,14 +83,18 @@ const Header = ({ background, logo, menu, socialMedia }) => {
             backgroundPosition: 'top center',
             backgroundImage: [t => 
               `linear-gradient(0deg, ${t.colors.background}, ${t.colors.background}), url(${background})`, , 'none'],
-            '&>*': { marginLeft: [0, , 5] },
-            '&>*:last-child': { marginTop: [5, , 0] },
           }}>
-            <Menu links={menu} horizontal={!smallScreen} onClick={closeMenu} right={!smallScreen} />
-            <SocialMedia links={socialMedia} />
+            <div sx={{ marginLeft: [0, , 5] }}>
+              <Menu links={menu} horizontal={!smallScreen} onClick={closeMenu} right={!smallScreen} />
+            </div>
+            <div sx={{ marginLeft: [0, , 5], marginTop: [5, , 0] }}>
+              <SocialMedia links={socialMedia} />
+            </div>
           </div>
-      </nav>
-      {smallScreen && <Burger toggled={menuOpen} onClick={toggleMenu} />}
+        </nav>
+        {smallScreen && <Burger toggled={menuOpen} onClick={toggleMenu} />}
+      </div>
+      
     </header>
   );
 }
@@ -113,4 +118,11 @@ Header.propTypes = {
       id: PropTypes.string,
     })
   ).isRequired,
+  videoHero: PropTypes.string,
+  scrollToRef: PropTypes.object,
+}
+
+Header.defaultProps = {
+  videoHero: null,
+  scrollToRef: null,
 }

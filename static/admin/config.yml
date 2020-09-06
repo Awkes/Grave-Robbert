@@ -100,13 +100,16 @@ collections:
       - file: data/pages/start.yml
         name: start
         label: "Landing Page"
-        fields: { name: video, label: Video, widget: file }
+        fields: 
+          - { name: slug, default: "", widget: hidden }
+          - { name: video, label: Video, widget: file }
       
       # News Page
       - file: data/pages/news.yml
         name: news
         label: "News"
         fields:
+          - { name: slug, default: news, widget: hidden }
           - { name: title, label: Title, widget: string }
       
       # Band Page
@@ -114,6 +117,7 @@ collections:
         name: band
         label: "Band"
         fields:
+          - { name: page, default: band, widget: hidden }
           - { name: title, label: Title, widget: string }
       
       # Music Page
@@ -121,6 +125,7 @@ collections:
         name: music
         label: "Music"
         fields:
+          - { name: slug, default: music, widget: hidden }
           - { name: title, label: Title, widget: string }
       
       # Live Page
@@ -128,6 +133,7 @@ collections:
         name: live
         label: "Live"
         fields:
+          - { name: slug, default: live, widget: hidden }
           - { name: title, label: Title, widget: string }
 
       # Contact Page
@@ -135,5 +141,6 @@ collections:
         name: contact
         label: "Contact"
         fields:
+          - { name: slug, default: contact, widget: hidden }
           - { name: title, label: Title, widget: string }
 
