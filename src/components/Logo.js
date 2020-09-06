@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import { jsx } from 'theme-ui';
 
 const Logo = ({ alt, src, onClick }) => (
-  <Link to="/" onClick={onClick}>
+  <Link onClick={onClick} to="/">
     <img 
       alt={alt} 
       src={src} 
       sx={{
         display: 'block',
         maxWidth: '100%',
+        maxHeight: '100%',
         width: ['200px', '300px'],
         filter: ({shadows}) => `drop-shadow(${shadows[0]})`,
       }}
@@ -28,4 +29,4 @@ Logo.propTypes = {
 
 Logo.defaultProps = {
   onClick: null,
-}
+};
