@@ -1,10 +1,8 @@
 /** @jsx jsx */
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
 import { jsx } from 'theme-ui';
 
-import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 
 const Home = ({ data }) => {
@@ -12,12 +10,9 @@ const Home = ({ data }) => {
     allPagesYaml: { nodes: [ { video } ] }
   } = data;
 
-  const news = useRef(null);
-
   return (
-    <Layout>
-      <Hero scrollToRef={news} video={video} />
-      <div ref={news} sx={{ height: '700px' }} /> {/* Temporary Fake News Block */}
+    <Layout videoHero={video}>
+      <div sx={{ height: '700px' }} /> {/* Temporary Fake News Block */}
     </Layout>
   );
 };
