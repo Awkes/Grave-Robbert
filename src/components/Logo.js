@@ -12,6 +12,7 @@ const Logo = ({ alt, src, onClick }) => (
         display: 'block',
         maxWidth: '100%',
         width: ['200px', '300px'],
+        filter: ({shadows}) => `drop-shadow(${shadows[0]})`,
       }}
     />
   </Link>
