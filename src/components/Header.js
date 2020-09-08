@@ -69,10 +69,10 @@ const Header = ({ background, logo, menu, socialMedia, videoHero, scrollToRef })
           ref={logoRef} 
           sx={{ 
             transition: 'transform ease-in-out .2s',
-            transformOrigin: 'top left',
             transform: ({ space }) => !videoHero || menuOpen || scrolledDown 
               ? 'translate(0)'
-              : `translate(calc(50vw - 50% - ${space[2]}px), calc(50vh - 50% - ${space[2]}px))`,
+              : `translate(calc(50vw - 50% - ${space[2]}px), calc(50vh - 50% - ${space[2]}px))
+                ${!smallScreen ? 'scale(1.5)' : ''}`,
           }}
         >
           <Logo alt={"Logo"} src={logo} onClick={closeMenu} />
