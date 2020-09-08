@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, useThemeUI } from 'theme-ui';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PropTypes } from 'prop-types';
 
 import Burger from './Burger';
@@ -11,9 +11,11 @@ import VideoHero from '../components/VideoHero';
 
 const Header = ({ background, logo, menu, socialMedia, videoHero, scrollToRef }) => {
   const { theme } = useThemeUI();
+  const logoRef = useRef(null);
  
   const [menuOpen, setMenuOpen] = useState(false);
   const [smallScreen, setSmallScreen] = useState(false);
+  const [scrolledDown, setScrolledDown] = useState(false);
   
   function toggleMenu(e) {
     setMenuOpen(state => !state);
@@ -30,10 +32,21 @@ const Header = ({ background, logo, menu, socialMedia, videoHero, scrollToRef })
       : setSmallScreen(false);
   }
 
+  function handleScroll() {
+    setScrolledDown(window.scrollY > 0 ? true : false)
+  }
+
   useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    if (videoHero) {
+      handleScroll();
+      window.addEventListener('scroll', handleScroll);
+    }
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      videoHero && window.removeEventListener('scroll', handleScroll);
+    }
   }, []);
 
   return (
@@ -48,9 +61,22 @@ const Header = ({ background, logo, menu, socialMedia, videoHero, scrollToRef })
         padding: 2,
         zIndex: 100,
         width: '100%',
+        minWidth: '320px',
+        minHeight: '100px',
         top: 0
       }}>
-        <Logo alt={"Logo"} src={logo} onClick={closeMenu} />
+        <div 
+          ref={logoRef} 
+          sx={{ 
+            transition: 'transform ease-in-out .2s',
+            transformOrigin: 'top left',
+            transform: ({ space }) => !videoHero || menuOpen || scrolledDown 
+              ? 'translate(0)'
+              : `translate(calc(50vw - 50% - ${space[2]}px), calc(50vh - 50% - ${space[2]}px))`,
+          }}
+        >
+          <Logo alt={"Logo"} src={logo} onClick={closeMenu} />
+        </div>
         <nav 
           sx={{ 
             position: ['fixed', ,'static'],
@@ -60,9 +86,10 @@ const Header = ({ background, logo, menu, socialMedia, videoHero, scrollToRef })
             left: 0,
             flexGrow: 1,
             zIndex: -1,
-            transform: [menuOpen ? 'translateY(0)' : 'translateY(100%)', , 'translateY(0)'],
+            transform: [menuOpen ? 'translateY(0%)' : 'translateY(100%)', , 'translateY(0)'],
             opacity: [menuOpen ? 1 : 0, , 1],
-            transition: 'transform ease-in-out .2s',
+            transitionProperty: 'transform, opacity',
+            transition: 'ease-in-out .2s',
           }}
         >
           <div sx={{

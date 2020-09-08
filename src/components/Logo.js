@@ -10,9 +10,8 @@ const Logo = ({ alt, src, onClick }) => (
       src={src} 
       sx={{
         display: 'block',
-        maxWidth: '100%',
-        maxHeight: '100%',
-        width: ['200px', '300px'],
+        maxWidth: ['200px', '300px'],
+        maxHeight: '100px',
         filter: ({shadows}) => `drop-shadow(${shadows[0]})`,
       }}
     />
