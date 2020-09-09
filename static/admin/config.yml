@@ -162,5 +162,6 @@ collections:
       - { name: date, label: "Publish date", widget: datetime }
       - { name: image, label: "Featured image", widget: image, required: false }
       - { name: body, label: "Content", widget: markdown }
+      - { name: type, default: news, widget: hidden }
 
 
