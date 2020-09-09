@@ -103,6 +103,12 @@ collections:
         fields: 
           - { name: slug, default: "", widget: hidden }
           - { name: video, label: Video, widget: file }
+          - name: news
+            label: News
+            widget: object
+            fields:
+            - { name: heading, label: "Heading", widget: string, default: "Latest News" }
+            - { name: link, label: "Text on link to news page", widget: string, default: "Show all" }
       
       # News Page
       - file: data/pages/news.yml
@@ -143,4 +149,18 @@ collections:
         fields:
           - { name: slug, default: contact, widget: hidden }
           - { name: title, label: Title, widget: string }
+
+  # News
+  - folder: data/news
+    name: "news"
+    label: News
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}_{{hour}}{{minute}}{{second}}-{{slug}}"
+    summary: "{{title}} - {{date}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: "Publish date", widget: datetime }
+      - { name: image, label: "Featured image", widget: image, required: false }
+      - { name: body, label: "Content", widget: markdown }
+
 
