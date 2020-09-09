@@ -45,6 +45,15 @@ export default {
       borderBottom: '1px solid',
       borderColor: 'primary',
       margin: 1,
-    }
+    },
+    h2: {
+      fontFamily: 'button',
+      fontWeight: 'normal',
+      fontSize: 5,
+      color: 'text',
+      marginY: 2,
+      textShadow: 0,
+    } 
+
   }
 };
