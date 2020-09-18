@@ -39,6 +39,10 @@ export default {
   borders: [
     '1px solid #fff'
   ],
+  sizes: {
+    minWidth: '320px',
+    maxWidth: '1200px',
+  },
   styles: {
     hr: {
       border: 'none',

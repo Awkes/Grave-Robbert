@@ -50,7 +50,7 @@ const Header = ({ background, logo, menu, socialMedia, videoHero, scrollToRef })
   }, []);
 
   return (
-    <header sx={{ minWidth: '320px', zIndex: 100, position: 'relative' }}>
+    <header sx={{ minWidth: 'minWidth', zIndex: 100, position: 'relative' }}>
       {videoHero && <VideoHero video={videoHero} scrollToRef={scrollToRef} />}
       <div sx={{
         position: ['fixed', , videoHero ? 'absolute' : 'relative'], 
@@ -61,7 +61,7 @@ const Header = ({ background, logo, menu, socialMedia, videoHero, scrollToRef })
         padding: 2,
         zIndex: 100,
         width: '100%',
-        minWidth: '320px',
+        minWidth: 'minWidth',
         minHeight: '100px',
         top: 0
       }}>
