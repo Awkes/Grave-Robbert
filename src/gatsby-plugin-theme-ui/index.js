@@ -1,7 +1,9 @@
 export default {
   colors: {
-    primary: '#C6D62D',
-    secondary: 'rgba(96,63,112,0.7)',
+    primary: 'rgba(198, 214, 45, 1)',
+    primaryTrans: 'rgba(198, 214, 45, 0.75)',
+    secondary: 'rgba(96,63,112, 0.7)',
+    secondaryTrans: 'rgba(96,63,112, 0.4)',
     tertiary: 'rgba(97,76,107,0.7)',
     text: '#fff',
     background: 'rgba(0,0,0,0.8)',
@@ -37,12 +39,14 @@ export default {
     '0 4px 1px rgba(96,63,112,0.7)'
   ],
   borders: [
-    '1px solid #fff'
+    '1px solid #fff',
+    '1px solid #000',
   ],
   sizes: {
     minWidth: '320px',
     maxWidth: '1200px',
   },
+  radii: [ 10 ],
   styles: {
     hr: {
       border: 'none',
