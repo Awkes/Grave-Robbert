@@ -17,8 +17,8 @@ const NewsSection = ({ heading, link, news }) => {
       <div sx={{ 
         marginY: 5,
         display: 'grid',
-        gridTemplateRows: ['unset', 'unset', 'auto auto auto'],
-        gridTemplateColumns: ['1fr', '1fr', '1fr 1fr'],
+        gridTemplateRows: ['auto 1fr 1fr 1fr', null, '1fr 1fr 1fr'],
+        gridTemplateColumns: ['1fr', null, '1fr 1fr'],
         alignItems: 'start',
         gap: 4,
         '&>*:first-of-type': { gridRow: [null, null, '1 / 4'] }

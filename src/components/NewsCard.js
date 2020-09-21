@@ -22,25 +22,32 @@ const NewsCard = ({ title, date, image, invert, excerpt, slug, small }) => (
       '&:hover': {
         backgroundColor: 'secondary',
         '&>time': { backgroundColor: 'primary' },
-        '&>img': { opacity: '1' },
+        '&>div>img': { opacity: '1', transform: 'scale(1.2)' },
       }
     }}
   >
     <Link sx={{ position: 'absolute', width: '100%', height: '100%' }} to={slug} />
-    {image && <img 
-      alt={title}
-      src={image} 
-      sx={{
-        minWidth: small ? '33%' : '100%',
-        maxWidth: small ? '33%' : '100%',
-        objectFit: 'cover',
-        display: 'block',
-        borderBottom: small ? 'none' : 1,
-        borderRight: small ? 1 : 'none',
-        opacity: '0.85',
-        transition: 'opacity ease-in-out .2s'
-      }} 
-    />}
+    
+    {image && <div sx={{ 
+      overflow: 'hidden',
+      minWidth: small ? '33%' : '100%',
+      maxWidth: small ? '33%' : '100%',
+      borderBottom: small ? 'none' : 1,
+      borderRight: small ? 1 : 'none',
+    }}>
+      <img 
+        alt={title}
+        src={image} 
+        sx={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          display: 'block',
+          opacity: '0.85',
+          transition: 'opacity ease-in-out .2s, transform ease-in-out .5s'
+        }} 
+      />
+    </div>}
 
     <div sx={{ flexGrow: 1, padding: 3}}>
       <h3 sx={{ marginTop: 0, marginBottom: 2 }}>{title}</h3>
