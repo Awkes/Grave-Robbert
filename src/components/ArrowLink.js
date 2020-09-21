@@ -35,6 +35,10 @@ const ArrowLink = ({ children, to }) => (
 export default ArrowLink;
 
 ArrowLink.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string,
   to: PropTypes.string.isRequired,
 };
+
+ArrowLink.defaultProps = {
+  children: null,
+}
