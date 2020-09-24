@@ -1,7 +1,9 @@
-import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
 const useWindowResize = (handleResize) => {
+  if (typeof handleResize !== 'function') 
+    throw('useWindowResize: You need to provide a callback function.');
+
   useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -10,7 +12,3 @@ const useWindowResize = (handleResize) => {
 };
 
 export default useWindowResize;
-
-useWindowResize.propTypes = {
-  handleResize: PropTypes.func.isRequired,
-};
