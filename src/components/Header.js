@@ -8,6 +8,7 @@ import Logo from './Logo';
 import Menu from './Menu';
 import SocialMedia from './SocialMedia';
 import VideoHero from '../components/VideoHero';
+import useWindowResize from '../hooks/useWindowResize';
 
 const Header = ({ background, logo, menu, socialMedia, videoHero, scrollToRef }) => {
   const { theme } = useThemeUI();
@@ -26,27 +27,21 @@ const Header = ({ background, logo, menu, socialMedia, videoHero, scrollToRef })
     menuOpen && setMenuOpen(false);
   }
 
-  function handleResize() {
-    window.innerWidth < Number(theme.breakpoints[1].replace(/\D/g, ''))
-      ? setSmallScreen(true)
-      : setSmallScreen(false);
-  }
-
   function handleScroll() {
     setScrolledDown(window.scrollY > 0 ? true : false)
   }
 
+  useWindowResize(() => {
+    window.innerWidth < Number(theme.breakpoints[1].replace(/\D/g, ''))
+      ? setSmallScreen(true) : setSmallScreen(false);
+  });
+
   useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
     if (videoHero) {
       handleScroll();
       window.addEventListener('scroll', handleScroll);
     }
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      videoHero && window.removeEventListener('scroll', handleScroll);
-    }
+    return () => videoHero && window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
