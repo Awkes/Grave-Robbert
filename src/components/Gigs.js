@@ -102,5 +102,5 @@ Gigs.propTypes = {
 
 Gigs.defaultProps = {
   gigs: [],
-  noGigs: 'There are no upcoming gigs!'
+  noGigs: 'There are no gigs!'
 };
