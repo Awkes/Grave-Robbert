@@ -91,7 +91,7 @@ collections:
 
   # Pages
   - name: pages
-    label: "Predefined Pages"
+    label: "Pages"
     editor:
       preview: false  
     files:
@@ -100,13 +100,30 @@ collections:
       - file: data/pages/start.yml
         name: start
         label: "Landing Page"
-        fields: { name: video, label: Video, widget: file }
+        fields: 
+          - { name: slug, default: "", widget: hidden }
+          - { name: video, label: Video, widget: file }
+          - name: news
+            label: News
+            widget: object
+            fields:
+            - { name: heading, label: "Heading", widget: string, default: "Latest News" }
+            - { name: link, label: "Text on link to news page", widget: string, default: "Show all" }     
+            - { name: noNews, label: "Text to show when there's no news", widget: string, default: "There are no news yet!" }     
+          - name: live
+            label: Live
+            widget: object
+            fields:
+            - { name: heading, label: "Heading", widget: string, default: "Latest Gigs" }
+            - { name: link, label: "Text on link to gigs page", widget: string, default: "Show all" }
+            - { name: noGigs, label: "Text to show when there's no upcoming gigs", widget: string, default: "There are no upcoming gigs!" }     
       
       # News Page
       - file: data/pages/news.yml
         name: news
         label: "News"
         fields:
+          - { name: slug, default: news, widget: hidden }
           - { name: title, label: Title, widget: string }
       
       # Band Page
@@ -114,6 +131,7 @@ collections:
         name: band
         label: "Band"
         fields:
+          - { name: page, default: band, widget: hidden }
           - { name: title, label: Title, widget: string }
       
       # Music Page
@@ -121,6 +139,7 @@ collections:
         name: music
         label: "Music"
         fields:
+          - { name: slug, default: music, widget: hidden }
           - { name: title, label: Title, widget: string }
       
       # Live Page
@@ -128,12 +147,39 @@ collections:
         name: live
         label: "Live"
         fields:
+          - { name: slug, default: live, widget: hidden }
           - { name: title, label: Title, widget: string }
+          - name: gigs
+            label: "Gigs"
+            summary: "{{location}}: {{venue}} - {{date}}"
+            widget: list
+            fields:
+              - { label: Date, name: date, widget: datetime }
+              - { label: "City / Country", name: location, widget: string }
+              - { label: Venue, name: venue, widget: string }
+              - { label: "Tickets Link", name: link, widget: string, required: false }
+              - { label: ID, name: id, widget: ncw-id, prefix: gig }
 
       # Contact Page
       - file: data/pages/contact.yml
         name: contact
         label: "Contact"
         fields:
+          - { name: slug, default: contact, widget: hidden }
           - { name: title, label: Title, widget: string }
+
+  # News
+  - folder: data/news
+    name: "news"
+    label: News
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}_{{hour}}{{minute}}{{second}}-{{slug}}"
+    summary: "{{title}} - {{date}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: "Publish date", widget: datetime }
+      - { name: image, label: "Featured image", widget: image, required: false }
+      - { name: body, label: "Content", widget: markdown }
+      - { name: type, default: news, widget: hidden }
+
 

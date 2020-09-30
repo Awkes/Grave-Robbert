@@ -16,6 +16,6 @@ menuLinks:
     type: local
     id: menu-L4nI3dg8B
   - title: Contact
-    link: https://graverobbert.netlify.app/contact
+    link: contact
     type: external
     id: menu-m3K7r54BdE

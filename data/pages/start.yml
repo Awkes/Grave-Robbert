@@ -1,1 +1,10 @@
+slug: ""
 video: /media/graverobbert.mp4
+news:
+  heading: Latest news
+  link: Show all
+  noNews: There are no news yet!
+live:
+  heading: Upcoming gigs
+  link: Show all
+  noGigs: There are no upcoming gigs!

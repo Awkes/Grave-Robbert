@@ -1,18 +1,22 @@
 /** @jsx jsx */
 import { jsx, useThemeUI } from 'theme-ui';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PropTypes } from 'prop-types';
 
 import Burger from './Burger';
 import Logo from './Logo';
 import Menu from './Menu';
 import SocialMedia from './SocialMedia';
+import VideoHero from '../components/VideoHero';
+import useWindowResize from '../hooks/useWindowResize';
 
-const Header = ({ background, logo, menu, socialMedia }) => {
+const Header = ({ background, logo, menu, socialMedia, videoHero, scrollToRef }) => {
   const { theme } = useThemeUI();
+  const logoRef = useRef(null);
  
   const [menuOpen, setMenuOpen] = useState(false);
   const [smallScreen, setSmallScreen] = useState(false);
+  const [scrolledDown, setScrolledDown] = useState(false);
   
   function toggleMenu(e) {
     setMenuOpen(state => !state);
@@ -23,47 +27,66 @@ const Header = ({ background, logo, menu, socialMedia }) => {
     menuOpen && setMenuOpen(false);
   }
 
-  function handleResize() {
-    window.innerWidth < Number(theme.breakpoints[1].replace(/\D/g, ''))
-      ? setSmallScreen(true)
-      : setSmallScreen(false);
+  function handleScroll() {
+    setScrolledDown(window.scrollY > 0 ? true : false)
   }
 
+  useWindowResize(() => {
+    window.innerWidth < Number(theme.breakpoints[1].replace(/\D/g, ''))
+      ? setSmallScreen(true) : setSmallScreen(false);
+  });
+
   useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    if (videoHero) {
+      handleScroll();
+      window.addEventListener('scroll', handleScroll);
+    }
+    return () => videoHero && window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header 
-      sx={{ 
-        padding: 2, 
-        position: ['fixed', , 'static'], 
+    <header sx={{ minWidth: 'minWidth', zIndex: 100, position: 'relative' }}>
+      {videoHero && <VideoHero video={videoHero} scrollToRef={scrollToRef} />}
+      <div sx={{
+        position: ['fixed', , videoHero ? 'absolute' : 'relative'], 
         display: 'flex', 
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '100%',
-        minWidth: '320px',
+        padding: 2,
         zIndex: 100,
-      }}
-    >
-      <Logo alt={"Logo"} src={logo} onClick={closeMenu} />
-      <nav 
-        sx={{ 
-          position: ['fixed', ,'static'],
-          width: ['100%', , 'unset'],
-          height: '100%',
-          top: 0,
-          left: 0,
-          flexGrow: 1,
-          zIndex: -1,
-          transform: [menuOpen ? 'translateY(0)' : 'translateY(100%)', , 'translateY(0)'],
-          opacity: [menuOpen ? 1 : 0, , 1],
-          transition: 'transform ease-in-out .2s',
-        }}
-      >
+        width: '100%',
+        minWidth: 'minWidth',
+        minHeight: '100px',
+        top: 0
+      }}>
+        <div 
+          ref={logoRef} 
+          sx={{ 
+            transition: 'transform ease-in-out .2s',
+            transform: ({ space }) => !videoHero || menuOpen || scrolledDown 
+              ? 'translate(0)'
+              : `translate(calc(50vw - 50% - ${space[2]}px), calc(50vh - 50% - ${space[2]}px))
+                ${!smallScreen ? 'scale(1.5)' : ''}`,
+          }}
+        >
+          <Logo alt={"Logo"} src={logo} onClick={closeMenu} />
+        </div>
+        <nav 
+          sx={{ 
+            position: ['fixed', ,'static'],
+            width: ['100%', , 'unset'],
+            height: '100%',
+            top: 0,
+            left: 0,
+            flexGrow: 1,
+            zIndex: -1,
+            transform: [menuOpen ? 'translateY(0%)' : 'translateY(100%)', , 'translateY(0)'],
+            opacity: [menuOpen ? 1 : 0, , 1],
+            transitionProperty: 'transform, opacity',
+            transition: 'ease-in-out .2s',
+          }}
+        >
           <div sx={{
             height: '100%',
             display: 'flex',
@@ -82,14 +105,18 @@ const Header = ({ background, logo, menu, socialMedia }) => {
             backgroundPosition: 'top center',
             backgroundImage: [t => 
               `linear-gradient(0deg, ${t.colors.background}, ${t.colors.background}), url(${background})`, , 'none'],
-            '&>*': { marginLeft: [0, , 5] },
-            '&>*:last-child': { marginTop: [5, , 0] },
           }}>
-            <Menu links={menu} horizontal={!smallScreen} onClick={closeMenu} right={!smallScreen} />
-            <SocialMedia links={socialMedia} />
+            <div sx={{ marginLeft: [0, , 5] }}>
+              <Menu links={menu} horizontal={!smallScreen} onClick={closeMenu} right={!smallScreen} />
+            </div>
+            <div sx={{ marginLeft: [0, , 5], marginTop: [5, , 0] }}>
+              <SocialMedia links={socialMedia} />
+            </div>
           </div>
-      </nav>
-      {smallScreen && <Burger toggled={menuOpen} onClick={toggleMenu} />}
+        </nav>
+        {smallScreen && <Burger toggled={menuOpen} onClick={toggleMenu} />}
+      </div>
+      
     </header>
   );
 }
@@ -113,4 +140,11 @@ Header.propTypes = {
       id: PropTypes.string,
     })
   ).isRequired,
+  videoHero: PropTypes.string,
+  scrollToRef: PropTypes.object,
+}
+
+Header.defaultProps = {
+  videoHero: null,
+  scrollToRef: null,
 }

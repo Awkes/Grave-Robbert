@@ -10,6 +10,7 @@ const linkStyle = {
   fontFamily: 'button',
   color: 'text',
   textDecoration: 'none',
+  textShadow: 0,
   display: 'block',
   paddingY: 2,
   paddingX: 3,
