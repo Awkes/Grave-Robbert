@@ -7,6 +7,7 @@ import FacebookFeed from '../components/FacebookFeed';
 import FrontpageNews from '../components/FrontpageNews';
 import Layout from '../components/Layout';
 import Section from '../components/Section';
+import Spotify from '../components/Spotify';
 
 const Home = ({ data }) => {
   const { 
@@ -17,11 +18,11 @@ const Home = ({ data }) => {
       } ] },
     allMarkdownRemark: { nodes },
     socialYaml: { socialMediaLinks }
-
   } = data;
 
   const news = nodes.map(({ excerpt, frontmatter, id, fields }) => ({ excerpt, ...frontmatter, id, ...fields }));
   const facebookUrl = socialMediaLinks.find(({ title }) => title === 'Facebook')?.link;
+  const spotifyUrl = socialMediaLinks.find(({ title }) => title === 'Spotify')?.link;
 
   return (
     <Layout videoHero={video}>
@@ -29,7 +30,15 @@ const Home = ({ data }) => {
         <FrontpageNews news={news} />
       </Section>
       <Section>
-        <FacebookFeed url={facebookUrl} />
+        <div sx={{ 
+          display: 'grid',
+          gap: 4,
+          gridTemplateColumns: ['1fr', '1fr', 'minmax(300px, 500px) minmax(300px, 630px)'],
+          justifyItems: 'center',
+        }}>
+          <FacebookFeed url={facebookUrl} />
+          <Spotify url={spotifyUrl} />
+        </div>
       </Section>
     </Layout>
   );
