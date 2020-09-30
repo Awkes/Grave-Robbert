@@ -8,7 +8,8 @@ const Section = ({ children, heading, link, linkText }) => {
   const { h2: H2 } = Styled; 
   return (
     <section sx={{
-      padding: [2, 5],
+      paddingX: [2, 5, null, 0],
+      paddingY: [2, 5],
       margin: '0 auto',
       maxWidth: 'maxWidth',
     }}>
@@ -17,7 +18,7 @@ const Section = ({ children, heading, link, linkText }) => {
       {children}
 
       {link && <div sx={{ textAlign: 'right' }}>
-        <ArrowLink to={link}>{linkText}</ArrowLink>
+        <ArrowLink to={link}>{linkText || '&nbsp;'}</ArrowLink>
       </div>}
     </section>
   );

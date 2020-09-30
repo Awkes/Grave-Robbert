@@ -33,7 +33,7 @@ export default {
     50, // 7
     100, // 8
   ],
-  breakpoints: [ '400px', '800px' ],
+  breakpoints: [ '400px', '800px', '1250px' ],
   shadows: [
     '0 0 5px #000',
     '0 4px 1px rgba(96,63,112,0.7)'
