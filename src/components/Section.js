@@ -8,16 +8,17 @@ const Section = ({ children, heading, link, linkText }) => {
   const { h2: H2 } = Styled; 
   return (
     <section sx={{
-      padding: [2, 5],
-      margin: '0 auto',
-      maxWidth: 'maxWidth',
+      paddingX: [2, 5, null, 0],
+      paddingY: [2, 5],
     }}>
       {heading && <H2>{heading}</H2>}
       
-      {children}
+      <div sx={{ marginY: 5 }}>
+        {children}
+      </div>
 
       {link && <div sx={{ textAlign: 'right' }}>
-        <ArrowLink to={link}>{linkText}</ArrowLink>
+        <ArrowLink to={link}>{linkText || '&nbsp;'}</ArrowLink>
       </div>}
     </section>
   );

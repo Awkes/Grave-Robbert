@@ -91,7 +91,7 @@ collections:
 
   # Pages
   - name: pages
-    label: "Predefined Pages"
+    label: "Pages"
     editor:
       preview: false  
     files:
@@ -108,7 +108,15 @@ collections:
             widget: object
             fields:
             - { name: heading, label: "Heading", widget: string, default: "Latest News" }
-            - { name: link, label: "Text on link to news page", widget: string, default: "Show all" }
+            - { name: link, label: "Text on link to news page", widget: string, default: "Show all" }     
+            - { name: noNews, label: "Text to show when there's no news", widget: string, default: "There are no news yet!" }     
+          - name: live
+            label: Live
+            widget: object
+            fields:
+            - { name: heading, label: "Heading", widget: string, default: "Latest Gigs" }
+            - { name: link, label: "Text on link to gigs page", widget: string, default: "Show all" }
+            - { name: noGigs, label: "Text to show when there's no upcoming gigs", widget: string, default: "There are no upcoming gigs!" }     
       
       # News Page
       - file: data/pages/news.yml
@@ -141,6 +149,16 @@ collections:
         fields:
           - { name: slug, default: live, widget: hidden }
           - { name: title, label: Title, widget: string }
+          - name: gigs
+            label: "Gigs"
+            summary: "{{location}}: {{venue}} - {{date}}"
+            widget: list
+            fields:
+              - { label: Date, name: date, widget: datetime }
+              - { label: "City / Country", name: location, widget: string }
+              - { label: Venue, name: venue, widget: string }
+              - { label: "Tickets Link", name: link, widget: string, required: false }
+              - { label: ID, name: id, widget: ncw-id, prefix: gig }
 
       # Contact Page
       - file: data/pages/contact.yml
