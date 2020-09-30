@@ -61,7 +61,14 @@ const Layout = ({ children, videoHero }) => {
     }}>
       <Header background={background} logo={logo} menu={menuLinks} scrollToRef={main} socialMedia={socialMediaLinks} videoHero={videoHero} />
 
-      <main ref={main} sx={{ flexGrow: 1 }}>
+      <main 
+        ref={main} 
+        sx={{ 
+          flexGrow: 1,
+          margin: '0 auto',
+          maxWidth: 'maxWidth',
+        }}
+      >
         {children}
       </main>
 

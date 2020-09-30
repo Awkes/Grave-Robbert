@@ -6,9 +6,7 @@ import Box from './Box';
 import NewsCard from './NewsCard';
 
 const FrontpageNews = ({ news, noNews }) => news?.length < 1 ? (
-  <div sx={{ marginY: 5}}>
-    <Box>{noNews}</Box>
-  </div>
+  <Box>{noNews}</Box>
 ) : (
   <div sx={{ 
     marginY: 5,
