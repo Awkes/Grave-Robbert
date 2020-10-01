@@ -1,5 +1,9 @@
 slug: live
 title: Live
+upcomingHeading: Upcoming dates
+noUpcoming: There are no upcoming gigs!
+pastHeading: Past dates
+noPast: There are no past dates!
 gigs:
   - id: gig-3guCAETwg
     date: 2020-09-30T09:19:04.138Z

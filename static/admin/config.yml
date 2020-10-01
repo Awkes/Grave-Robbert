@@ -10,7 +10,7 @@ public_folder: /media
 collections:
   # Site
   - name: site
-    label: "Site Layout"
+    label: "Site"
     editor:
       preview: false
     files:
@@ -149,6 +149,10 @@ collections:
         fields:
           - { name: slug, default: live, widget: hidden }
           - { name: title, label: Title, widget: string }
+          - { name: upcomingHeading, label: "Heading for upcoming gigs", widget: string, default: "Upcoming dates" }
+          - { name: noUpcoming, label: "Text to show when there's no upcoming gigs", widget: string, default: "There are no upcoming gigs!" }     
+          - { name: pastHeading, label: "Heading for past gigs", widget: string, default: "Past dates" }
+          - { name: noPast, label: "Text to show when there's no past gigs", widget: string, default: "There are no past gigs!" }     
           - name: gigs
             label: "Gigs"
             summary: "{{location}}: {{venue}} - {{date}}"
