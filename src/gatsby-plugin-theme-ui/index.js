@@ -21,6 +21,7 @@ export default {
     20, // 3
     30, // 4
     40, // 5
+    50, // 6
   ],
   space: [
     0, // 0
@@ -52,16 +53,22 @@ export default {
       border: 'none',
       borderBottom: '1px solid',
       borderColor: 'primary',
-      margin: 1,
+    },
+    h1: {
+      fontFamily: 'heading',
+      fontWeight: 'normal',
+      fontSize: 6,
+      color: 'text',
+      marginY: 2,
+      textShadow: 0,
     },
     h2: {
-      fontFamily: 'button',
+      fontFamily: 'heading',
       fontWeight: 'normal',
       fontSize: 5,
       color: 'text',
       marginY: 2,
       textShadow: 0,
     } 
-
   }
 };
