@@ -6,7 +6,7 @@ import { jsx } from 'theme-ui';
 
 import Box from './Box';
 
-const Gigs = ({ gigs, noGigs }) => gigs?.length < 1 ? (
+const Gigs = ({ gigs, noGigs, removeTickets }) => gigs?.length < 1 ? (
   <Box>{noGigs}</Box>
 ) : (
   <table sx={{
@@ -73,7 +73,7 @@ const Gigs = ({ gigs, noGigs }) => gigs?.length < 1 ? (
             }}>
               {location}
             </td>
-            {link && <td sx={{ gridArea: 'tickets', fontSize: '24px' }}>
+            {link && !removeTickets && <td sx={{ gridArea: 'tickets', fontSize: '24px' }}>
               <a href={link} rel="noreferrer noopener" sx={{ color: 'primary' }} target="_blank">
                 <FontAwesomeIcon icon={faTicketAlt} />
               </a>
@@ -98,9 +98,11 @@ Gigs.propTypes = {
     })
   ),
   noGigs: PropTypes.string,
+  removeTickets: PropTypes.bool,
 };
 
 Gigs.defaultProps = {
   gigs: [],
-  noGigs: 'There are no gigs!'
+  noGigs: 'There are no gigs!',
+  removeTickets: false,
 };
