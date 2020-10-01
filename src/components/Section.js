@@ -9,7 +9,7 @@ const Section = ({ children, heading, link, linkText }) => {
   return (
     <section sx={{
       paddingX: [2, 5, null, 0],
-      paddingY: [2, 5],
+      paddingY: [4, 7],
     }}>
       {heading && <H2>{heading}</H2>}
       
