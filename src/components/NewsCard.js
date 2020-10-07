@@ -22,12 +22,10 @@ const NewsCard = ({ title, date, image, invert, excerpt, slug, small }) => (
       '&:hover': {
         backgroundColor: 'secondary',
         '&>time': { backgroundColor: 'primary' },
-        '&>div>img': { opacity: '1', transform: 'scale(1.2)' },
+        '&>div>img': { opacity: '1', transform: 'scale(1.1)' },
       }
     }}
-  >
-    <Link sx={{ position: 'absolute', width: '100%', height: '100%' }} to={slug} />
-    
+  >   
     {image && <div sx={{ 
       overflow: 'hidden',
       minWidth: small ? '33%' : '100%',
@@ -44,7 +42,7 @@ const NewsCard = ({ title, date, image, invert, excerpt, slug, small }) => (
           objectFit: 'cover',
           display: 'block',
           opacity: '0.85',
-          transition: 'opacity ease-in-out .2s, transform ease-in-out .5s'
+          transition: 'opacity ease-in-out .2s, transform ease-in-out .2s'
         }} 
       />
     </div>}
@@ -70,6 +68,7 @@ const NewsCard = ({ title, date, image, invert, excerpt, slug, small }) => (
     >
       {date}
     </time>
+    <Link sx={{ position: 'absolute', width: '100%', height: '100%' }} to={slug} />
   </article>
 );
 
