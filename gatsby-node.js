@@ -33,11 +33,11 @@ exports.createPages = async ({ graphql, actions: { createPage }, reporter }) => 
   const posts = result.data.allMarkdownRemark.nodes;
   
   // Create news-pages
-  const postsPerPage = 1;
+  const postsPerPage = 12;
   const numPages = Math.ceil(posts.length / postsPerPage);
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
-      path: pagePath = i === 0 ? '/news' : `/news/${i+1}`,
+      path: i === 0 ? '/news' : `/news/${i+1}`,
       component: path.resolve('./src/templates/news-page.js'),
       context: {
         limit: postsPerPage,
