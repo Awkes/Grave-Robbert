@@ -49,7 +49,8 @@ const Home = ({ data }) => {
       <Section>
         <div sx={{ 
           display: 'grid',
-          gap: 4,
+          columnGap: 5,
+          rowGap: 8,
           gridTemplateColumns: ['1fr', '1fr', 'minmax(300px, 500px) minmax(300px, 680px)'],
           justifyItems: 'center',
         }}>

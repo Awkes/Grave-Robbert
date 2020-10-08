@@ -125,6 +125,7 @@ collections:
         fields:
           - { name: slug, default: news, widget: hidden }
           - { name: title, label: Title, widget: string }
+          - { name: noNews, label: "Text to show when there's no news", widget: string, default: "There are no news yet!" }
       
       # Band Page
       - file: data/pages/band.yml

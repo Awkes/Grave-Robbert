@@ -11,29 +11,30 @@ const NewsCard = ({ title, date, image, invert, excerpt, slug, small }) => (
       boxShadow: 0,
       borderRadius: 0,
       overflow: 'hidden',
-      display: 'flex',
-      flexDirection: small ? 'row' : 'column',
+      display: 'grid',
+      gridTemplateRows: small ? null : '60% auto 25px',
+      gridTemplateColumns: small 
+        ? (!invert ? '30% auto min-content' : 'min-content auto 30%') 
+        : null,
       fontFamily: 'body',
       fontSize: 2,
       width: '100%',
-      height: '100%',
+      height: small ? '150px' : '500px',
       transition: 'background-color ease-in-out .2s',
       cursor: 'pointer',
       '&:hover': {
         backgroundColor: 'secondary',
         '&>time': { backgroundColor: 'primary' },
-        '&>div>img': { opacity: '1', transform: 'scale(1.2)' },
+        '&>div>img': { opacity: '1', transform: 'scale(1.1)' },
       }
     }}
-  >
-    <Link sx={{ position: 'absolute', width: '100%', height: '100%' }} to={slug} />
-    
+  >   
     {image && <div sx={{ 
       overflow: 'hidden',
-      minWidth: small ? '33%' : '100%',
-      maxWidth: small ? '33%' : '100%',
       borderBottom: small ? 'none' : 1,
-      borderRight: small ? 1 : 'none',
+      borderRight: small && !invert ? 1 : 'none',
+      borderLeft: small && invert ? 1 : 'none',
+      order: invert ? 3 : null,
     }}>
       <img 
         alt={title}
@@ -44,12 +45,21 @@ const NewsCard = ({ title, date, image, invert, excerpt, slug, small }) => (
           objectFit: 'cover',
           display: 'block',
           opacity: '0.85',
-          transition: 'opacity ease-in-out .2s, transform ease-in-out .5s'
+          transition: 'opacity ease-in-out .2s, transform ease-in-out .2s',
         }} 
       />
     </div>}
 
-    <div sx={{ flexGrow: 1, padding: 3}}>
+    <div sx={{ 
+      padding: 3, 
+      order: invert ? 2 : null,
+      gridColumn: small && !image ? 'span 2' : null,
+      gridRow: !small && !image ? 'span 2' : null,
+      overflow: 'hidden',
+      background: ({ colors: { text }}) => `linear-gradient(${text}, ${text}, ${text}, transparent)`,
+      '-webkit-background-clip': 'text',
+      '-webkit-text-fill-color': 'transparent',
+    }}>
       <h3 sx={{ marginTop: 0, marginBottom: 2 }}>{title}</h3>
       <p sx={{ margin: 0 }}>{excerpt}</p>
     </div>
@@ -63,13 +73,14 @@ const NewsCard = ({ title, date, image, invert, excerpt, slug, small }) => (
         textAlign: 'center',
         textTransform: 'uppercase',
         writingMode: small ? 'vertical-rl' : null,
-        order: invert ? -1 : null,
+        order: invert ? 1 : null,
         transform: invert ? 'rotate(180deg)' : null,
         transition: 'inherit',
       }}
     >
       {date}
     </time>
+    <Link sx={{ position: 'absolute', width: '100%', height: '100%' }} to={slug} />
   </article>
 );
 

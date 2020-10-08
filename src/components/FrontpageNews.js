@@ -14,7 +14,7 @@ const FrontpageNews = ({ news, noNews }) => news?.length < 1 ? (
     gridTemplateRows: ['auto 1fr 1fr 1fr', null, '1fr 1fr 1fr'],
     gridTemplateColumns: ['1fr', null, '1fr 1fr'],
     alignItems: 'start',
-    gap: 4,
+    gap: 5,
     '&>*:first-of-type': { gridRow: [null, null, '1 / 4'] }
   }}>
     {news.map(({ id, date, image, title, excerpt, slug }, i) => (
