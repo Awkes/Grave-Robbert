@@ -29,7 +29,7 @@ const News = ({ data, pageContext }) => {
         <div sx={{
           display: 'grid',
           gridTemplateColumns: ['1fr', null, '1fr 1fr', '1fr 1fr 1fr'],
-          gap: 4,
+          gap: 5,
         }}>
           {nodes.length > 0 ?
             nodes.map(({ id, frontmatter, excerpt, fields }) => (
