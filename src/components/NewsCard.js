@@ -57,8 +57,8 @@ const NewsCard = ({ title, date, image, invert, excerpt, slug, small }) => (
       gridRow: !small && !image ? 'span 2' : null,
       overflow: 'hidden',
       background: ({ colors: { text }}) => `linear-gradient(${text}, ${text}, ${text}, transparent)`,
-      '-webkit-background-clip': 'text',
-      '-webkit-text-fill-color': 'transparent',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
     }}>
       <h3 sx={{ marginTop: 0, marginBottom: 2 }}>{title}</h3>
       <p sx={{ margin: 0 }}>{excerpt}</p>
