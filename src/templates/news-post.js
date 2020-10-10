@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { graphql } from 'gatsby';
+import PropTypes from 'prop-types';
 import { jsx, Styled } from 'theme-ui';
 
 import Layout from '../components/Layout';
@@ -68,6 +69,10 @@ const News = ({ data }) => {
 };
 
 export default News;
+
+News.propTypes = {
+  data: PropTypes.object
+};
 
 export const query = graphql`
   query ($path: String!) {
