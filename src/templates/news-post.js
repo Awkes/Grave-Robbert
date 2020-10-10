@@ -1,14 +1,90 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
+import { graphql } from 'gatsby';
+import { jsx, Styled } from 'theme-ui';
 
 import Layout from '../components/Layout';
+import Section from '../components/Section';
 
-const News = () => (
-  <Layout>
-    <div sx={{ paddingX: 7, paddingY: 8 }}>
-      <p>News Item</p>
-    </div>
-  </Layout>
-);
+const H2 = Styled.h2;
+
+const News = ({ data }) => {
+  const {
+    markdownRemark: {
+      frontmatter: { date, image, title },
+      html
+    },
+    pagesYaml: { title: newsTitle }
+  } = data;
+
+  return (
+    <Layout heading={newsTitle}>
+      <Section>
+        <article>
+          <header sx={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+          }}>
+            <H2>{title}</H2>
+            <time sx={{ fontFamily: 'body', fontSize: 3 }}>{date}</time>
+          </header>
+          
+          <img 
+            alt={title}
+            src={image}
+            sx={{ width: '100%', borderRadius: 0, boxShadow: 0, marginY: 4 }} 
+          />
+
+          <div 
+            dangerouslySetInnerHTML={{ __html: html }} 
+            sx={{ 
+              fontSize: 3,
+              fontFamily: 'body',
+              margin: '0 auto',
+              paddingTop: 5,
+              paddingX: [0, 5, 8],
+              'h1': ({ styles: { h1 } }) => h1,
+              'h2': ({ styles: { h2 } }) => h2,
+              'h3, h4, h5, h6': ({ styles: { h3 } }) => h3,
+              'img': { 
+                maxWidth: '100%',
+                borderRadius: 0,
+                boxShadow: 0,
+              },
+              'a': {
+                color: 'primary',
+                textDecoration: 'none',
+                '&:hover': { 
+                  textDecoration: 'underline',
+                  textDecorationColor: ({ colors: { text }}) => text,
+                }
+              }
+            }}  
+          />
+        </article>       
+      </Section>
+    </Layout>
+  );
+};
 
 export default News;
+
+export const query = graphql`
+  query ($path: String!) {
+    markdownRemark (fields: { slug: { eq: $path } }) {
+      frontmatter {
+        date(formatString: "MMM DD, YYYY - HH:mm")
+        image
+        title
+        type
+      }
+      html
+      fields {
+        slug
+      }
+    }
+    pagesYaml(slug: {eq: "news"}) {
+      title
+    }
+  }
+`;

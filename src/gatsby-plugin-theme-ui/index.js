@@ -69,6 +69,14 @@ export default {
       color: 'text',
       marginY: 2,
       textShadow: 0,
+    },
+    h3: {
+      fontFamily: 'heading',
+      fontWeight: 'normal',
+      fontSize: 5,
+      color: 'text',
+      marginY: 2,
+      textShadow: 0,
     } 
   }
 };
