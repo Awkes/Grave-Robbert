@@ -27,7 +27,16 @@ const News = ({ data }) => {
             alignItems: 'center',
           }}>
             <H2>{title}</H2>
-            <time sx={{ fontFamily: 'body', fontSize: 3 }}>{date}</time>
+            <time 
+              sx={{ 
+                fontFamily: 'body',
+                fontSize: 3,
+                textAlign: 'right',
+                marginLeft: 2,
+              }}
+            >
+              {date}
+            </time>
           </header>
           
           <img 
@@ -48,7 +57,6 @@ const News = ({ data }) => {
               'h2': ({ styles: { h2 } }) => h2,
               'h3, h4, h5, h6': ({ styles: { h3 } }) => h3,
               'img': { 
-                maxWidth: '100%',
                 borderRadius: 0,
                 boxShadow: 0,
               },
@@ -59,6 +67,10 @@ const News = ({ data }) => {
                   textDecoration: 'underline',
                   textDecorationColor: ({ colors: { text }}) => text,
                 }
+              },
+              '&>*': {
+                maxWidth: '100%',
+                overflow: 'auto'
               }
             }}  
           />
@@ -71,14 +83,14 @@ const News = ({ data }) => {
 export default News;
 
 News.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object.isRequired
 };
 
 export const query = graphql`
   query ($path: String!) {
     markdownRemark (fields: { slug: { eq: $path } }) {
       frontmatter {
-        date(formatString: "MMM DD, YYYY - HH:mm")
+        date(formatString: "MMMM DD, YYYY - HH:mm")
         image
         title
         type
