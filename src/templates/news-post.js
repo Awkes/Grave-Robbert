@@ -39,11 +39,11 @@ const News = ({ data }) => {
             </time>
           </header>
           
-          <img 
+          {image && <img 
             alt={title}
             src={image}
             sx={{ width: '100%', borderRadius: 0, boxShadow: 0, marginY: 4 }} 
-          />
+          />}
 
           <div 
             dangerouslySetInnerHTML={{ __html: html }} 
