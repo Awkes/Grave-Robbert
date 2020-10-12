@@ -15,17 +15,17 @@ collections:
       preview: false
     files:
 
-      # Site Settings
+      # Settings
       - name: settings
         label: "Settings"
-        file: data/settings/settings.yml
+        file: data/site/settings.yml
         fields:
           - { label: Logo, name: logo, widget: image }
           - { label: Background, name: background, widget: image }
           - { label: "Footer Text", name: footer, widget: string }
       
       # Menu
-      - file: data/menu/menu.yml
+      - file: data/site/menu.yml
         name: menu
         label: Menu
         fields:
@@ -49,7 +49,6 @@ collections:
                     - { label: "Live", value: "live" }
                     - { label: "Contact", value: "contact" }
                 - {label: ID, name: id, widget: ncw-id, prefix: menu, hidden: true}
-              
               - label: "Custom Page"
                 name: custom
                 widget: object
@@ -64,7 +63,6 @@ collections:
                   searchFields: [title]
                   displayFields: [title]
                 - {label: ID, name: id, widget: ncw-id, prefix: menu, hidden: true}
-
               - label: "External Link"
                 name: external
                 widget: object
@@ -75,7 +73,7 @@ collections:
                 - { label: ID, name: id, widget: ncw-id, prefix: menu, hidden: true }
 
       # Social Media
-      - file: data/social/social.yml
+      - file: data/site/social.yml
         name: socialMedia
         label: "Social Media"
         fields:
@@ -91,7 +89,7 @@ collections:
               - {label: ID, name: id, widget: ncw-id, prefix: social, hidden: true}
 
       # Partners
-      - file: data/partners/partners.yml
+      - file: data/site/partners.yml
         name: partners
         label: Partners
         fields:
@@ -141,14 +139,6 @@ collections:
           - { name: slug, default: news, widget: hidden }
           - { name: title, label: Title, widget: string }
           - { name: noNews, label: "Text to show when there's no news", widget: string, default: "There are no news yet!" }
-      
-      # # Band Page
-      # - file: data/pages/band.yml
-      #   name: band
-      #   label: "Band"
-      #   fields:
-      #     - { name: page, default: band, widget: hidden }
-      #     - { name: title, label: Title, widget: string }
       
       # Music Page
       - file: data/pages/music.yml

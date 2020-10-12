@@ -110,7 +110,7 @@ News.propTypes = {
 
 export const query = graphql`
   query ($skip: Int!, $limit: Int!) {
-    newsPage: pagesYaml(slug: {eq: "news"}) {
+    newsPage: pagesYaml(fields: { type: {eq: "news"} }) {
       title
       noNews
     }

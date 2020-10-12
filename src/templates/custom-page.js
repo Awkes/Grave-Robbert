@@ -17,7 +17,7 @@ const Page = ({ data }) => {
   } = data;
 
   return (
-    <Layout heading={title} customLogo={logo}>
+    <Layout customLogo={logo} heading={title}>
       <Section>
          
         {image && <img 

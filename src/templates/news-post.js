@@ -101,7 +101,7 @@ export const query = graphql`
         slug
       }
     }
-    pagesYaml(slug: {eq: "news"}) {
+    pagesYaml(fields: { type: {eq: "news"} }) {
       title
     }
   }

@@ -13,6 +13,13 @@ exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
     const slug = createFilePath({ node, getNode, basePath: 'custom-pages' });
     createNodeField({ node, name: 'slug', value: '/page'+slug });
   }
+
+  // Add type to Yaml Nodes
+  else if (node.internal.type === 'SiteYaml' || node.internal.type === 'PagesYaml') {
+    const path = createFilePath({ node, getNode });
+    const type = path.split('/').filter(val => val !== '').pop();
+    createNodeField({ node, name: 'type', value: type });
+  }
 };
 
 exports.createPages = async ({ graphql, actions: { createPage }, reporter }) => {

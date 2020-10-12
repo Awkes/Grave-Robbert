@@ -21,7 +21,7 @@ const Home = ({ data }) => {
     },
     news: { nodes: newsNodes },
     gigs: { gigs: gigNodes },
-    socialYaml: { socialMediaLinks }
+    social: { socialMediaLinks }
   } = data;
 
   const news = useMemo(() => (
@@ -73,7 +73,7 @@ Home.propTypes = {
 
 export const query = graphql`
   query {
-    frontpage: pagesYaml(slug: {eq: ""}) {
+    frontpage: pagesYaml(fields: { type: {eq: "start"} }) {
       video
       news {
         heading
@@ -114,7 +114,7 @@ export const query = graphql`
         }
       }
     }
-    socialYaml {
+    social: siteYaml(fields: { type: {eq: "social"} }) {
       socialMediaLinks {
         link
         title

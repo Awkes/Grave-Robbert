@@ -13,26 +13,26 @@ const Layout = ({ children, heading, videoHero, customLogo }) => {
   const main = useRef(null);
   const data = useStaticQuery(graphql`
     query {
-      settingsYaml {
+      settings: siteYaml(fields: {type: {eq: "settings"}}) {
         logo
         background
         footer
       }
-      menuYaml {
+      menu: siteYaml(fields: {type: {eq: "menu"}}) {
         menuLinks {
           link
           title
           id
         }
       }
-      socialYaml {
+      social: siteYaml(fields: {type: {eq: "social"}}) {
         socialMediaLinks {
           link
           title
           id
         }
       }
-      partnersYaml {
+      partners: siteYaml(fields: {type: {eq: "partners"}}) {
         partnerLinks {
           title
           link
@@ -44,10 +44,10 @@ const Layout = ({ children, heading, videoHero, customLogo }) => {
   `);
 
   const { 
-    settingsYaml: { background, logo, footer },
-    menuYaml: { menuLinks },
-    socialYaml: { socialMediaLinks },
-    partnersYaml: { partnerLinks }
+    settings: { background, logo, footer },
+    menu: { menuLinks },
+    social: { socialMediaLinks },
+    partners: { partnerLinks }
   } = data;
 
   return (

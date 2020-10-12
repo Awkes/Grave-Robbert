@@ -53,7 +53,7 @@ Live.propTypes = {
 
 export const query = graphql`
   query {
-    live: pagesYaml(slug: {eq: "live"}) {
+    live: pagesYaml(fields: { type: {eq: "live"} }) {
       title
       upcomingHeading
       noUpcoming
