@@ -1,20 +1,24 @@
 menuLinks:
   - title: News
     link: news
-    type: local
+    type: internal
     id: menu-tE__1kz13
-  - title: Band
-    link: band
-    type: local
-    id: menu-qKBIo1Ici
+  - type: custom
+    id: menu-gY-ACnwo4
+    title: Band
+    link: page/band
   - title: Music
     link: music
-    type: local
+    type: internal
     id: menu-U0mVqhy3Z
   - title: Live
     link: live
-    type: local
+    type: internal
     id: menu-L4nI3dg8B
+  - type: custom
+    id: menu-OkqC1GaNd
+    title: Gravefest
+    link: page/gravefest
   - title: Contact
     link: contact
     type: external

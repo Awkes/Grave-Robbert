@@ -9,7 +9,7 @@ import Header from './Header';
 
 const { hr: Hr, h1: H1 } = Styled;
 
-const Layout = ({ children, heading, videoHero }) => {
+const Layout = ({ children, heading, videoHero, customLogo }) => {
   const main = useRef(null);
   const data = useStaticQuery(graphql`
     query {
@@ -61,7 +61,7 @@ const Layout = ({ children, heading, videoHero }) => {
       backgroundSize: 'cover',
       backgroundPosition: 'top center',
     }}>
-      <Header background={background} logo={logo} menu={menuLinks} scrollToRef={main} socialMedia={socialMediaLinks} videoHero={videoHero} />
+      <Header background={background} logo={customLogo || logo} menu={menuLinks} scrollToRef={main} socialMedia={socialMediaLinks} videoHero={videoHero} />
 
       <main 
         ref={main} 
@@ -94,11 +94,13 @@ Layout.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  customLogo: PropTypes.node,
   heading: PropTypes.string,
   videoHero: PropTypes.string,
 };
 
 Layout.defaultProps = {
+  customLogo: null,
   heading: null,
   videoHero: null,
 };

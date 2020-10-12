@@ -33,10 +33,10 @@ collections:
             label: "Menu"
             widget: list
             types:
-              - label: "Local Link"
-                name: local
+              - label: "Internal Page"
+                name: internal
                 widget: object
-                summary: "{{fields.title}} (Local Link)"
+                summary: "{{fields.title}} (Internal Page Link)"
                 fields:
                 - { label: Title, name: title, widget: string }
                 - label: Page
@@ -45,11 +45,26 @@ collections:
                   options:
                     - { label: "Landing Page", value: "" }
                     - { label: "News", value: "news" }
-                    - { label: "Band", value: "band" }
                     - { label: "Music", value: "music" }
                     - { label: "Live", value: "live" }
                     - { label: "Contact", value: "contact" }
                 - {label: ID, name: id, widget: ncw-id, prefix: menu, hidden: true}
+              
+              - label: "Custom Page"
+                name: custom
+                widget: object
+                summary: "{{fields.title}} (Custom Page Link)"
+                fields:
+                - { label: Title, name: title, widget: string }
+                - label: Page
+                  name: link
+                  widget: relation
+                  collection: customPages
+                  valueField: "page/{{slug}}"
+                  searchFields: [title]
+                  displayFields: [title]
+                - {label: ID, name: id, widget: ncw-id, prefix: menu, hidden: true}
+
               - label: "External Link"
                 name: external
                 widget: object
@@ -127,13 +142,13 @@ collections:
           - { name: title, label: Title, widget: string }
           - { name: noNews, label: "Text to show when there's no news", widget: string, default: "There are no news yet!" }
       
-      # Band Page
-      - file: data/pages/band.yml
-        name: band
-        label: "Band"
-        fields:
-          - { name: page, default: band, widget: hidden }
-          - { name: title, label: Title, widget: string }
+      # # Band Page
+      # - file: data/pages/band.yml
+      #   name: band
+      #   label: "Band"
+      #   fields:
+      #     - { name: page, default: band, widget: hidden }
+      #     - { name: title, label: Title, widget: string }
       
       # Music Page
       - file: data/pages/music.yml
@@ -173,6 +188,24 @@ collections:
           - { name: slug, default: contact, widget: hidden }
           - { name: title, label: Title, widget: string }
 
+  # Custom Pages
+  - folder: data/custom-pages
+    name: "customPages"
+    label: "Custom Pages"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: logo, label: Custom Logo, widget: image, required: false, description: "Optional custom logotype to display in header." }
+      - { name: image, label: "Featured image", widget: image, required: false }
+      - name: body
+        label: "Content"
+        widget: markdown
+        buttons: [bold, italic, link, heading-three, heading-four, heading-five, heading-six, quote, bulleted-list, numbered-list]
+        editor_components: [image]
+      - { name: type, default: custom-page, widget: hidden }
+
   # News
   - folder: data/news
     name: "news"
@@ -190,5 +223,3 @@ collections:
         buttons: [bold, italic, link, heading-three, heading-four, heading-five, heading-six, quote, bulleted-list, numbered-list]
         editor_components: [image]
       - { name: type, default: news, widget: hidden }
-
-
