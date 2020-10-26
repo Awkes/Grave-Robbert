@@ -2,11 +2,15 @@ slug: contact
 title: Contact
 nameLabel: Name
 eMailLabel: E-mail
+subjectLabel: Subject
 messageLabel: Message
 submitLabel: Send message
 nameErrorMsg: Your name must be 2-50 letters [a-ö].
 eMailErrorMsg: You need to provide a valid e-mail address.
+subjectErrorMsg: Your subject needs to be 1-50 characters.
 messageErrorMsg: Your message needs to be between 3-1000 characters.
+success: Your message have been sent, we'll get back to you as soon as possible.
 nameRegexp: ^[a-öA-Ö\- ]{2,50}$
-emailRegexp: ^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$
+eMailRegexp: ^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$
+subjectRegexp: ^.{1,50}$
 messageRegexp: (.|\n){3,1000}
