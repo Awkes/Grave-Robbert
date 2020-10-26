@@ -8,6 +8,7 @@ export default {
     text: '#fff',
     background: 'rgba(0,0,0,0.8)',
     muted: '#000',
+    error: '#f00',
   },
   fonts: {
     body: 'Assistant',
@@ -22,6 +23,7 @@ export default {
     30, // 4
     40, // 5
     50, // 6
+    100, // 7
   ],
   space: [
     0, // 0

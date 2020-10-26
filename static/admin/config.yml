@@ -177,6 +177,20 @@ collections:
         fields:
           - { name: slug, default: contact, widget: hidden }
           - { name: title, label: Title, widget: string }
+          - { name: nameLabel, label: "Name label", widget: string }
+          - { name: eMailLabel, label: "Email label", widget: string }
+          - { name: subjectLabel, label: "Subject label", widget: string }
+          - { name: messageLabel, label: "Message label", widget: string }
+          - { name: submitLabel, label: "Submit label", widget: string }
+          - { name: nameErrorMsg, label: "Name error message", widget: string }
+          - { name: eMailErrorMsg, label: "Email error message", widget: string }
+          - { name: subjectErrorMsg, label: "Subject error message", widget: string }
+          - { name: messageErrorMsg, label: "Message error message", widget: string }
+          - { name: success, label: "Confirmation message", widget: text }
+          - { name: nameRegexp, label: "Name validation regexp", widget: string }
+          - { name: eMailRegexp, label: "E-mail validation regexp", widget: string }
+          - { name: subjectRegexp, label: "Subject validation regexp", widget: string }
+          - { name: messageRegexp, label: "Message validation regexp", widget: string }
 
   # Custom Pages
   - folder: data/custom-pages
