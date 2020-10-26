@@ -2,6 +2,7 @@
 import { graphql,useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import { useRef } from 'react';
+import { Helmet } from 'react-helmet';
 import { jsx, Styled } from 'theme-ui';
 
 import Footer from './Footer';
@@ -9,13 +10,15 @@ import Header from './Header';
 
 const { hr: Hr, h1: H1 } = Styled;
 
-const Layout = ({ children, heading, videoHero, customLogo }) => {
+const Layout = ({ children, heading, videoHero, customLogo, subtitle }) => {
   const main = useRef(null);
   const data = useStaticQuery(graphql`
     query {
       settings: siteYaml(fields: {type: {eq: "settings"}}) {
         logo
         background
+        title
+        desc
         footer
       }
       menu: siteYaml(fields: {type: {eq: "menu"}}) {
@@ -44,7 +47,7 @@ const Layout = ({ children, heading, videoHero, customLogo }) => {
   `);
 
   const { 
-    settings: { background, logo, footer },
+    settings: { background, logo, title, desc, footer },
     menu: { menuLinks },
     social: { socialMediaLinks },
     partners: { partnerLinks }
@@ -61,6 +64,11 @@ const Layout = ({ children, heading, videoHero, customLogo }) => {
       backgroundSize: 'cover',
       backgroundPosition: 'top center',
     }}>
+      <Helmet>
+        <title>{title + (subtitle ? ` | ${subtitle}`: '')}</title>
+        <meta content={desc} name="description" />
+      </Helmet>
+      
       <Header background={background} logo={customLogo || logo} menu={menuLinks} scrollToRef={main} socialMedia={socialMediaLinks} videoHero={videoHero} />
 
       <main 
@@ -96,11 +104,13 @@ Layout.propTypes = {
   ]).isRequired,
   customLogo: PropTypes.node,
   heading: PropTypes.string,
+  subtitle: PropTypes.string,
   videoHero: PropTypes.string,
 };
 
 Layout.defaultProps = {
   customLogo: null,
   heading: null,
+  subtitle: null,
   videoHero: null,
 };

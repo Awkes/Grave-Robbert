@@ -1,12 +1,10 @@
 /** @jsx jsx */
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import { jsx, Styled } from 'theme-ui';
+import { jsx } from 'theme-ui';
 
 import Layout from '../components/Layout';
 import Section from '../components/Section';
-
-const H2 = Styled.h2;
 
 const Page = ({ data }) => {
   const {
@@ -17,7 +15,7 @@ const Page = ({ data }) => {
   } = data;
 
   return (
-    <Layout customLogo={logo} heading={title}>
+    <Layout customLogo={logo} heading={title} subtitle={title}>
       <Section>
          
         {image && <img 

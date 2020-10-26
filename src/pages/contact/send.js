@@ -11,7 +11,7 @@ import Section from '../../components/Section';
 const Contact = ({ data }) => {
   const { contact: { title, success } } = data;
   return (
-    <Layout heading={title}>
+    <Layout heading={title} subtitle={title}>
       <Section>
         <div
           sx={{

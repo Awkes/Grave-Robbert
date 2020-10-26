@@ -24,7 +24,7 @@ const News = ({ data, pageContext }) => {
   const { theme: { colors : { secondary }} } = useThemeUI();
 
   return (
-    <Layout heading={title}>
+    <Layout heading={title} subtitle={title}>
       <Section>
         <div sx={{
           display: 'grid',

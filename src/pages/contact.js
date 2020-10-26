@@ -58,7 +58,7 @@ const Contact = ({ data }) => {
   }
 
   return (
-    <Layout heading={title}>
+    <Layout heading={title} subtitle={title}>
       <Section>
         <form
           action="/contact/send"

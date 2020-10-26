@@ -22,6 +22,8 @@ collections:
         fields:
           - { label: Logo, name: logo, widget: image }
           - { label: Background, name: background, widget: image }
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: desc, widget: string }
           - { label: "Footer Text", name: footer, widget: string }
       
       # Menu

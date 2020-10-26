@@ -18,7 +18,7 @@ const News = ({ data }) => {
   } = data;
 
   return (
-    <Layout heading={newsTitle}>
+    <Layout heading={newsTitle} subtitle={`${newsTitle}: ${title}`}>
       <Section>
         <article>
           <header sx={{ 

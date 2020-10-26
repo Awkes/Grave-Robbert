@@ -34,7 +34,7 @@ const Live = ({ data }) => {
   }, [gigs]);
 
   return (
-    <Layout heading={title}>
+    <Layout heading={title} subtitle={title}>
       <Section heading={upcomingHeading}>
         <Gigs gigs={upcomingGigs} noGigs={noUpcoming} />
       </Section>
