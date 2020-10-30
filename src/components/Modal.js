@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { jsx } from 'theme-ui';
 
@@ -8,7 +8,12 @@ const id = 'modal-root';
 
 const Modal = ({ children, portal, close }) =>  {
   const [parent, setParent] = useState(null);
-  useEffect(() => setParent(document.getElementById(id)));
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    setParent(document.getElementById(id));
+    modalRef?.current?.focus();
+  });
   
   if (portal) return <div id={id} sx={{ position: 'fixed', top: 0, zIndex: 100 }} />;
   
@@ -21,6 +26,7 @@ const Modal = ({ children, portal, close }) =>  {
       <div
         onClick={close}
         onKeyUp={onKeyUp}
+        ref={modalRef}
         role="presentation"
         sx={{
           width: '100vw',
@@ -35,6 +41,7 @@ const Modal = ({ children, portal, close }) =>  {
             '100%': { backgroundColor: 'rgba(0, 0, 0, .9)' },
           }
         }}
+        tabIndex="-1"
       >
         {children}
       </div>,
