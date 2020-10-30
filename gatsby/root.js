@@ -5,6 +5,8 @@ import { css, Global } from '@emotion/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Modal from '../src/components/Modal';
+
 export const wrapRootElement = ({ element }) => (
   <>
     <Global
@@ -22,6 +24,7 @@ export const wrapRootElement = ({ element }) => (
       `}
     />
     {element}
+    <Modal portal />
   </>
 );
 
