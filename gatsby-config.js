@@ -5,9 +5,10 @@ module.exports = {
     'gatsby-plugin-theme-ui',
     'gatsby-plugin-fontawesome-css',
     {
-      resolve: 'gatsby-plugin-netlify-cms',
+      resolve: 'gatsby-source-filesystem',
       options: {
-        modulePath: `${__dirname}/gatsby/cms.js`
+        name: 'media',
+        path: `${__dirname}/static/media`
       }
     },
     {
@@ -17,18 +18,14 @@ module.exports = {
         path: `${__dirname}/data/`
       }
     },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'media',
-        path: `${__dirname}/static/media`
-      }
-    },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     'gatsby-transformer-yaml',
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          'gatsby-remark-relative-images',
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -38,8 +35,12 @@ module.exports = {
         ],
       },
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-netlify-cms',
+      options: {
+        modulePath: `${__dirname}/gatsby/cms.js`
+      }
+    },
   ],
 };
