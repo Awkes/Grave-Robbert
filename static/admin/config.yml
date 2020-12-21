@@ -102,7 +102,7 @@ collections:
               - {label: Title, name: title, widget: string}
               - {label: Link, name: link, widget: string}
               - {label: Image, name: image, widget: image}
-              - {label: ID, name: id, widget: ncw-id, prefix: partner}
+              - {label: ID, name: id, widget: ncw-id, prefix: partner, hidden: true}
 
   # Pages
   - name: pages
@@ -111,10 +111,10 @@ collections:
       preview: false  
     files:
 
-      # Landing Page
+      # Home
       - file: data/pages/start.yml
         name: start
-        label: "Landing Page"
+        label: "Home"
         fields: 
           - { name: slug, default: "", widget: hidden }
           - { name: video, label: Video, widget: file }
@@ -149,6 +149,41 @@ collections:
         fields:
           - { name: slug, default: music, widget: hidden }
           - { name: title, label: Title, widget: string }
+          - { name: discoHeading, label: "Discography Heading", widget: string }
+          - name: discography
+            label: "Discography"
+            summary: "{{title}}"
+            widget: list
+            fields:
+              - { label: "Title", name: title, widget: string }
+              - { label: "Release Date", name: date, widget: datetime }
+              - { label: "Cover Image", name: image, widget: image, required: false }
+              - { label: "Information", name: info, widget: text }
+              - name: tracks
+                label: "Tracks"
+                summary: "{{track}}"
+                widget: list
+                fields:
+                  - { label: "Track", name: track, widget: string }
+                  - { label: ID, name: id, widget: ncw-id, prefix: track, hidden: true}
+              - name: links
+                label: "Links"
+                summary: "{{title}}"
+                widget: list
+                fields:
+                  - { label: "Title", name: title, widget: string }
+                  - { label: "Link", name: link, widget: string }
+                  - { label: ID, name: id, widget: ncw-id, prefix: link, hidden: true }
+              - { label: ID, name: id, widget: ncw-id, prefix: disco, hidden: true }
+          - { name: videoHeading, label: "Videos Heading", widget: string }
+          - name: videos
+            label: "Music Videos"
+            summary: "{{title}}"
+            widget: list
+            fields:
+              - { label: "Title", name: title, widget: string }
+              - { label: "YouTube Video ID", name: videoId, widget: string }
+              - { label: ID, name: id, widget: ncw-id, prefix: video, hidden: true }
       
       # Live Page
       - file: data/pages/live.yml
@@ -170,7 +205,7 @@ collections:
               - { label: "City / Country", name: location, widget: string }
               - { label: Venue, name: venue, widget: string }
               - { label: "Tickets Link", name: link, widget: string, required: false }
-              - { label: ID, name: id, widget: ncw-id, prefix: gig }
+              - { label: ID, name: id, widget: ncw-id, prefix: gig, hidden: true }
 
       # Contact Page
       - file: data/pages/contact.yml

@@ -1,2 +1,68 @@
 slug: music
 title: Music
+discoHeading: Discography
+discography:
+  - date: 2020-06-18T14:26:09.371Z
+    title: Here There Be Witches
+    links:
+      - title: Stream
+        link: https://orcd.co/here-there-be-witches
+        id: track-1
+    info: Here There Be Witches is a horror metal cover by Grave Robbert of the
+      original by Creature Feature from their third album American Gothic.
+    image: /media/lmh088-grave-robbert-here-there-be-witches-small.jpg
+    tracks:
+      - track: Here There Be Witches
+        id: track-TIpVaeAh7
+    id: disco-2
+  - date: 2019-10-25T14:19:42.800Z
+    title: The Nightmare Begins
+    links:
+      - title: Buy CD
+        link: https://lmh.me/product/grave-robbert-the-nightmare-begins-cd/
+        id: link-1
+    tracks:
+      - track: Close Your Eyes
+        id: track-1
+      - track: The Nightmare Begins
+        id: track-2
+      - track: Genocide
+        id: track-3
+      - track: Stand Alone
+        id: track-4
+      - track: Descending
+        id: track-5
+      - track: Neglected
+        id: track-6
+      - track: The Ecstasy of the Night
+        id: track-7
+      - track: 13th Day in Hell (GiltY Cover)
+        id: track-8
+      - track: Deflowered
+        id: track-9
+      - track: Down
+        id: track-10
+      - track: Midnight Road
+        id: track-11
+      - track: The NS
+        id: track-12
+      - track: When the Bell Tolls One
+        id: track-13
+      - track: Försummad
+        id: track-14
+    info: The Nightmare Begins is the result of one wicked mans ideas, a 14 track
+      collection of sinister shock-rock. This album was released on halloween
+      the 25 of October by the Stockholm/Moscow label LMH Records.
+    image: /media/lmh044-grave-robbert-the-nightmare-begins-cover-small.jpg
+    id: disco-1
+videoHeading: Videos
+videos:
+  - videoId: 8IlJXyQ-86s
+    title: Xanaxtasy
+    id: video-3
+  - videoId: Mq-Wige-Uos
+    title: The Ecstasy of the Night
+    id: video-2
+  - title: When the Bell Tolls One
+    videoId: l_l9SzR239g
+    id: video-1

@@ -1,4 +1,8 @@
 partnerLinks:
+  - id: partner-wmDK8O2fU
+    title: Donate with Paypal
+    link: https://www.paypal.com/donate/?hosted_button_id=7XQEP9D8TSFGE
+    image: /media/paypal.png
   - title: LMH Records
     link: https://lmh.me
     image: /media/lmh.svg
@@ -7,3 +11,7 @@ partnerLinks:
     link: https://akerlof.se
     image: /media/logo_black.png
     id: partner-gwFcGhRhAh
+  - id: partner-qGst3S6U6
+    title: Grave Shop
+    link: https://www.graveshop.co.uk/
+    image: /media/graveshop.png

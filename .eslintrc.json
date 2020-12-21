@@ -3,10 +3,7 @@
     "@weahead/eslint-config-react"
   ],
   "rules": {
-    "indent": [
-      2,
-      2
-    ],
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
     "semi": [
       "error",
       "always"

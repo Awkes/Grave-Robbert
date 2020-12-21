@@ -19,6 +19,10 @@ menuLinks:
     id: menu-OkqC1GaNd
     title: Gravefest
     link: page/gravefest
+  - type: external
+    id: menu-mTTGdiDoS
+    title: Shop
+    link: https://www.graveshop.co.uk/
   - title: Contact
     link: contact
     type: external
