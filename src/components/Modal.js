@@ -1,4 +1,6 @@
 /** @jsx jsx */
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -21,10 +23,14 @@ const Modal = ({ children, portal, close }) =>  {
     if (e.key === 'Escape') close();
   }
 
+  function closeModal({ target }) {
+    if (target.nodeName !== 'A') close();
+  }
+
   return children 
     ? parent && createPortal(
       <div
-        onClick={close}
+        onClick={closeModal}
         onKeyUp={onKeyUp}
         ref={modalRef}
         role="presentation"
@@ -34,6 +40,7 @@ const Modal = ({ children, portal, close }) =>  {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          overflow: 'auto',
           backgroundColor: 'rgba(0, 0, 0, .9)',
           animation: 'fadeIn .2s 1',
           '@keyframes fadeIn': {
@@ -43,6 +50,22 @@ const Modal = ({ children, portal, close }) =>  {
         }}
         tabIndex="-1"
       >
+        <button 
+          onClick={close}
+          sx={{ 
+            position: 'absolute',
+            top: 5,
+            right: 5,
+            backgroundColor: 'transparent',
+            color: 'primary',
+            fontSize: 5,
+            border: 'none',
+            cursor: 'pointer'
+          }}
+        >
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
+
         {children}
       </div>,
       parent
