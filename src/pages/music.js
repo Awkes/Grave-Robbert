@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { jsx } from 'theme-ui';
 
+import DiscoItem from '../components/DiscoItem';
 import FigureButton from '../components/FigureButton';
 import Layout from '../components/Layout';
 import Modal from '../components/Modal';
@@ -24,15 +25,15 @@ const Music = ({ data }) => {
   } = data;
   
   const [activeItem, setActiveItem] = useState(null);
-
+  
   function showItem(type, index) {
     switch (type) {
-    case 'disco':
-      return setActiveItem(<div>{discography[index]?.title}</div>);
-    case 'video':
-      return setActiveItem(<YouTubeVideo id={videos[index]?.videoId} />);
-    default:
-      setActiveItem(null);
+      case 'disco':
+        return setActiveItem(<DiscoItem {...discography[index]} />);
+      case 'video':
+        return setActiveItem(<YouTubeVideo id={videos[index]?.videoId} />);
+      default:
+        setActiveItem(null);
     }
   }
 
@@ -92,7 +93,7 @@ export const query = graphql`
       discoHeading
       discography {
         title
-        date
+        date(formatString: "MMMM DD, YYYY")
         info
         image
         links {
