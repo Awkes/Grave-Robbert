@@ -2,35 +2,37 @@
 import PropTypes from 'prop-types';
 import { jsx } from 'theme-ui';
 
+import Image from "./Image";
+
 const Partners = ({ links }) => (
-  <section sx={{ backgroundColor: 'secondary', paddingY: 5, borderTop: 0, borderBottom: 0 }}>
-    <ul 
-      sx={{ 
-        listStyleType: 'none', 
-        margin: 0, 
-        padding: 0, 
-        textAlign: 'center',
-      }}
-    >
-      {links.map(({ title, link, id, image }) => (
-        <li 
-          key={id}
-          sx={{ 
-            display: 'inline-block',
-            paddingX: 3,
-            paddingY: 2,
-          }}
-        >
-          <a 
-            href={link} 
-            rel="noreferrer noopener" 
-            target="_blank"
-          >
-            <img alt={title} src={image} sx={{ height: '40px', maxWidth: '100%' }} />
-          </a>
-        </li>
-      ))}
-    </ul>
+  <section 
+    sx={{ 
+      backgroundColor: 'secondary', 
+      paddingY: 5, 
+      borderTop: 0, 
+      borderBottom: 0,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+    }}
+  >
+    {links.map(({ title, link, id, image }) => (
+      <a 
+        href={link} 
+        key={id}
+        rel="noreferrer noopener" 
+        sx={{ margin: 2 }}
+        target="_blank"
+      >
+        <Image
+          alt={title}
+          image={image}
+          imgStyle={{ objectFit: 'scale-down' }}
+          style={{ width: '300px', height: '50px' }}
+        />
+      </a>
+    ))}
   </section>
 );
 
@@ -42,7 +44,7 @@ Partners.propTypes = {
       name: PropTypes.string,
       link: PropTypes.string,
       id: PropTypes.string,
-      image:PropTypes.string,
+      image:PropTypes.object,
     })
   ).isRequired,
 };

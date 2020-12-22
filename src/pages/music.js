@@ -65,7 +65,7 @@ const Music = ({ data }) => {
           {videos.map(({ title, videoId, id }, i) => (
             <FigureButton 
               caption={title} 
-              image={youTubeImage(videoId)} 
+              image={{ publicURL: youTubeImage(videoId) }} 
               key={id} 
               onClick={() => showItem('video', i)}
             />
@@ -95,7 +95,14 @@ export const query = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         info
-        image
+        image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
         links {
           link
           title

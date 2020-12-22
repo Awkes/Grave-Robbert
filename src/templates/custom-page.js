@@ -3,24 +3,25 @@ import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { jsx } from 'theme-ui';
 
+import Image from '../components/Image';
 import Layout from '../components/Layout';
 import Section from '../components/Section';
 
 const Page = ({ data }) => {
   const {
     markdownRemark: {
-      frontmatter: { logo, image, title },
+      frontmatter: { logo, image, title, hideTitle },
       html
     },
   } = data;
 
   return (
-    <Layout customLogo={logo} heading={title} subtitle={title}>
+    <Layout customLogo={logo} heading={!hideTitle && title} subtitle={title}>
       <Section>
          
-        {image && <img 
+        {image && <Image 
           alt={title}
-          src={image}
+          image={image}
           sx={{ 
             width: '100%', 
             borderRadius: 0, 
@@ -74,9 +75,24 @@ export const query = graphql`
   query ($path: String!) {
     markdownRemark (fields: { slug: { eq: $path } }) {
       frontmatter {
-        logo
-        image
+        logo {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
+        image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
         title
+        hideTitle
         type
       }
       html

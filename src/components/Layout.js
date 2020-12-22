@@ -15,7 +15,14 @@ const Layout = ({ children, heading, videoHero, customLogo, subtitle }) => {
   const data = useStaticQuery(graphql`
     query {
       settings: siteYaml(fields: {type: {eq: "settings"}}) {
-        logo
+        logo {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
         background
         title
         desc
@@ -39,7 +46,14 @@ const Layout = ({ children, heading, videoHero, customLogo, subtitle }) => {
         partnerLinks {
           title
           link
-          image
+          image {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+            publicURL
+          }
           id
         }
       }

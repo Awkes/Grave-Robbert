@@ -73,7 +73,7 @@ Footer.propTypes = {
       name: PropTypes.string,
       link: PropTypes.string,
       id: PropTypes.string,
-      image: PropTypes.string,
+      image: PropTypes.object,
     })
   ).isRequired,
   socialMedia: PropTypes.arrayOf(

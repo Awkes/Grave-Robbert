@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { jsx, Styled } from 'theme-ui';
 
+import Image from './Image';
+
 const H2 = Styled.h2;
 
 const DiscoItem = ({ date, image, info, links, title, tracks }) => (
@@ -12,19 +14,27 @@ const DiscoItem = ({ date, image, info, links, title, tracks }) => (
     display: 'grid',
     gap: 5,
     gridTemplateColumns: ['1fr', '1fr', '1fr 1fr'],
-    padding: [2, 5],
+    marginTop: [8, null],
+    paddingY: 5,
+    paddingX: [2, 5],
     fontFamily: 'body',
     fontSize: 3,
   }}>
-    <img 
+    <Image 
       alt={title} 
-      src={image} 
+      image={image}
+      imgStyle={{ 
+        objectFit: 'contain', 
+        height: 'unset',
+      }}
       sx={{
         gridRow: ['1 / 2', '1 / 2', '1 / 6'] ,
         maxWidth: '100%',
-        borderRadius: 0,
-        boxShadow: 0,
-        backgroundColor: 'secondaryTrans',
+        '& img': {
+          borderRadius: 0,
+          boxShadow: 0,
+          backgroundColor: 'secondaryTrans',
+        }
       }}
     />
 
@@ -72,7 +82,7 @@ export default DiscoItem;
 
 DiscoItem.propTypes = {
   date: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.object.isRequired,
   info: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(
     PropTypes.shape({

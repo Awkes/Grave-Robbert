@@ -2,8 +2,12 @@ require('dotenv').config({ path: '.env' });
 
 module.exports = {
   plugins: [
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-theme-ui',
     'gatsby-plugin-fontawesome-css',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-yaml',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -18,9 +22,6 @@ module.exports = {
         path: `${__dirname}/data/`
       }
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-yaml',
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -30,12 +31,18 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 1200,
+              backgroundColor: 'none',
             },
           },
         ],
       },
     },
-    'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-schema-field-absolute-path',
+      options: {
+        dirs: `static`
+      }
+    },
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
