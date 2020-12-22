@@ -38,7 +38,7 @@ FrontpageNews.propTypes = {
   news: PropTypes.arrayOf(
     PropTypes.shape({
       date: PropTypes.string,
-      image: PropTypes.string,
+      image: PropTypes.object,
       title: PropTypes.string,
       id: PropTypes.string,
       excerpt: PropTypes.string,

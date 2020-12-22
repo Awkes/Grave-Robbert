@@ -125,7 +125,7 @@ export default Header;
 
 Header.propTypes = {
   background: PropTypes.string.isRequired,
-  logo: PropTypes.string.isRequired,
+  logo: PropTypes.object.isRequired,
   menu: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,

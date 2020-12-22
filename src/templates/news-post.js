@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { jsx, Styled } from 'theme-ui';
 
+import Image from '../components/Image';
 import Layout from '../components/Layout';
 import Section from '../components/Section';
 
@@ -39,9 +40,9 @@ const News = ({ data }) => {
             </time>
           </header>
           
-          {image && <img 
+          {image && <Image 
             alt={title}
-            src={image}
+            image={image}
             sx={{ width: '100%', borderRadius: 0, boxShadow: 0, marginY: 4 }} 
           />}
 
@@ -92,7 +93,14 @@ export const query = graphql`
     markdownRemark (fields: { slug: { eq: $path } }) {
       frontmatter {
         date(formatString: "MMMM DD, YYYY - HH:mm")
-        image
+        image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+          publicURL
+        }
         title
         type
       }

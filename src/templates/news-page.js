@@ -123,7 +123,14 @@ export const query = graphql`
       nodes {
         frontmatter {
           date(formatString: "MMM DD")
-          image
+          image {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+            publicURL
+          }
           title
           type
         }

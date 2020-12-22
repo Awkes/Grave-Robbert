@@ -1,5 +1,6 @@
 ---
 title: Gravefest
+hideTitle: true
 logo: /media/gravefest_text.webp
 image: ""
 type: custom-page

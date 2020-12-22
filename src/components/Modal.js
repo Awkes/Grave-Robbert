@@ -40,7 +40,7 @@ const Modal = ({ children, portal, close }) =>  {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          overflow: 'auto',
+          overflowY: 'auto',
           backgroundColor: 'rgba(0, 0, 0, .9)',
           animation: 'fadeIn .2s 1',
           '@keyframes fadeIn': {
@@ -60,7 +60,8 @@ const Modal = ({ children, portal, close }) =>  {
             color: 'primary',
             fontSize: 5,
             border: 'none',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            zIndex: 100,
           }}
         >
           <FontAwesomeIcon icon={faTimes} />

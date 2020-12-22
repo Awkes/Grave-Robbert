@@ -238,6 +238,7 @@ collections:
     summary: "{{title}}"
     fields:
       - { name: title, label: Title, widget: string }
+      - { label: "Hide title", name: hideTitle, widget: boolean, default: false }
       - { name: logo, label: Custom Logo, widget: image, required: false, description: "Optional custom logotype to display in header." }
       - { name: image, label: "Featured image", widget: image, required: false }
       - name: body

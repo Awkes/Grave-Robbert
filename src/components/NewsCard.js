@@ -3,6 +3,8 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { jsx } from 'theme-ui';
 
+import Image from "./Image";
+
 const NewsCard = ({ title, date, image, invert, excerpt, slug, small }) => (
   <article
     sx={{
@@ -25,7 +27,7 @@ const NewsCard = ({ title, date, image, invert, excerpt, slug, small }) => (
       '&:hover': {
         backgroundColor: 'secondary',
         '&>time': { backgroundColor: 'primary' },
-        '&>div>img': { opacity: '1', transform: 'scale(1.1)' },
+        '&>div>div': { opacity: '1', transform: 'scale(1.1)' },
       }
     }}
   >   
@@ -36,9 +38,9 @@ const NewsCard = ({ title, date, image, invert, excerpt, slug, small }) => (
       borderLeft: small && invert ? 1 : 'none',
       order: invert ? 3 : null,
     }}>
-      <img 
+      <Image 
         alt={title}
-        src={image} 
+        image={image}
         sx={{
           width: '100%',
           height: '100%',
@@ -90,7 +92,7 @@ NewsCard.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   excerpt: PropTypes.string.isRequired,
-  image: PropTypes.string,
+  image: PropTypes.object,
   invert: PropTypes.bool,
   slug: PropTypes.string.isRequired,
   small: PropTypes.bool,

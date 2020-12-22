@@ -1,5 +1,6 @@
 ---
 title: Band Members
+hideTitle: false
 image: /media/band.jpg
 type: custom-page
 ---
