@@ -29,7 +29,6 @@ const VideoHero = ({ video, scrollToRef }) => {
   }
   
   function videoLoad() {
-    console.log('loaded')
     setMuted(videoRef?.current.muted);
     setPaused(videoRef?.current.paused);
   }
@@ -48,7 +47,7 @@ const VideoHero = ({ video, scrollToRef }) => {
         autoPlay
         loop
         muted
-        onLoadedData={videoLoad}
+        onPlaying={videoLoad}
         ref={videoRef}
         sx={{
           minWidth: '100%',
